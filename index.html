@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Faculty Profile | Prof. (Dr.) Sachin Gupta</title>
+  <title>Faculty Feed | Prof. (Dr.) Sachin Gupta</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons for academic & social symbols -->
+  <!-- FontAwesome Icons for social and academic actions -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts: Lora for elegant serif headings and Inter for high-readability body -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Inter for high-readability body and Lora for editorial/narrative accents -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   
   <script>
     tailwind.config = {
@@ -20,27 +20,22 @@
             serif: ['Lora', 'serif'],
           },
           colors: {
-            alabaster: {
-              50: '#FDFDFB',
-              100: '#FAF8F4',
-              200: '#F5F1E9', // Soft Alabaster background
-              300: '#EDE6DA',
+            linkedin: {
+              50: '#F3F2EF',  // Light Grey Background
+              100: '#E8F3FF', // Light Blue Accent Hover
+              500: '#0A66C2', // Classic LinkedIn Blue Primary
+              600: '#004182', // Dark Blue Active/Hover
+              700: '#002244',
+              900: '#191919', // Deep Text Dark Grey
             },
-            taupe: {
-              400: '#D5C9B3',
-              500: '#C4B499', // Warm Taupe borders and outlines
-              600: '#AA977A',
-            },
-            charcoal: {
-              700: '#4A4947',
-              900: '#2D2C2A', // Deep Charcoal Text
-            },
-            sage: {
-              50: '#F4F6F0',
-              100: '#E9EDE1',
-              500: '#708238', // Sage Green Accent
-              600: '#5F6F2F',
+            slate: {
+              300: '#D9D9D9',
+              600: '#5E5E5E', // Muted Grey text
             }
+          },
+          boxShadow: {
+            'social': '0 4px 12px rgba(0, 0, 0, 0.08)',
+            'bubble': '0 8px 20px rgba(0, 0, 0, 0.06)',
           }
         }
       }
@@ -48,1059 +43,708 @@
   </script>
   
   <style>
-    /* Styling optimization for high-fidelity physical printouts */
+    /* Print Fallback - Switches page back to standard clean resume format */
     @media print {
       .no-print { display: none !important; }
-      body { background: white !important; color: #2D2C2A !important; font-family: serif; }
-      .print-card { background: white !important; border: 1px solid #C4B499 !important; color: #2D2C2A !important; box-shadow: none !important; }
+      body { background: white !important; color: #191919 !important; }
+      .print-card { background: white !important; border: 1px solid #ddd !important; box-shadow: none !important; }
       .tab-pane { display: block !important; opacity: 1 !important; page-break-inside: avoid; }
     }
     
-    /* Elegant line drawing effects and active tab transitions */
+    /* Smooth tab switching presets */
     .tab-pane {
       display: none;
       opacity: 0;
-      transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .tab-pane.active {
       display: block;
       opacity: 1;
     }
     
-    /* Fine-grained custom styling for an organic, tactile look */
-    .border-tactile {
-      border: 1px solid rgba(196, 180, 153, 0.4);
+    /* Custom clean scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
     }
-    .bg-tactile {
-      background: rgba(245, 241, 233, 0.5);
+    ::-webkit-scrollbar-track {
+      background: #F3F2EF;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CCD0D5;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0A66C2;
     }
   </style>
 </head>
-<body class="bg-alabaster-100 text-charcoal-900 min-h-screen font-sans antialiased selection:bg-sage-100 selection:text-sage-600">
+<body class="bg-linkedin-50 text-linkedin-900 font-sans antialiased selection:bg-linkedin-100 selection:text-linkedin-500 min-h-screen pb-12">
 
-  <!-- Main Nav Bar (Elegant Editorial minimalist header) -->
-  <nav class="bg-alabaster-50/90 border-b border-alabaster-200 py-5 px-6 sticky top-0 z-50 no-print backdrop-blur-md">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-      <div class="flex items-center gap-4">
-        <span class="font-serif italic font-semibold text-charcoal-900 tracking-wide">Prof. Sachin Gupta</span>
-        <span class="text-xs text-taupe-600 tracking-wider font-medium uppercase hidden md:inline">/ Maharaja Agrasen Institute of Technology</span>
+  <!-- Top Minimal Header Bar -->
+  <nav class="bg-white border-b border-slate-200 sticky top-0 z-50 backdrop-blur-md no-print py-3 px-6 shadow-sm">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <span class="font-bold tracking-tight text-linkedin-900 text-lg flex items-center gap-1.5 font-serif italic">
+          <i class="fa-solid fa-square-rss text-linkedin-500 animate-pulse"></i> SachinGupta.Feed
+        </span>
+        <span class="bg-linkedin-100 text-linkedin-500 text-[10px] font-bold px-2 py-0.5 rounded-full border border-blue-200 uppercase tracking-wider hidden sm:inline">Active Research Hub</span>
       </div>
-      <div class="flex items-center gap-6 text-xs tracking-wider font-semibold uppercase text-charcoal-700">
-        <a href="#pane-profile" onclick="switchTab('profile')" class="hover:text-sage-500 transition-colors">Overview</a>
-        <a href="#pane-journals" onclick="switchTab('journals')" class="hover:text-sage-500 transition-colors">Journals</a>
-        <a href="#pane-conferences" onclick="switchTab('conferences')" class="hover:text-sage-500 transition-colors">Conferences</a>
-        <a href="#pane-patents" onclick="switchTab('patents')" class="hover:text-sage-500 transition-colors">IP & Patents</a>
-        <a href="mailto:deanresearch@mait.ac.in" class="text-sage-500 hover:text-sage-600 transition-colors flex items-center gap-1.5 font-bold">
-          <i class="fa-regular fa-envelope text-sm"></i> Connect
-        </a>
+      
+      <!-- Quick search and connection indicators -->
+      <div class="flex items-center gap-4">
+        <div class="relative hidden md:block">
+          <input type="text" id="feed-search" onkeyup="filterFeed()" placeholder="Search publications..." class="w-56 bg-slate-100 pl-8 pr-4 py-1.5 rounded-full text-xs text-linkedin-900 border-none focus:ring-1 focus:ring-linkedin-500 focus:bg-white transition-all">
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-[10px] text-slate-600"></i>
+        </div>
+        <button onclick="window.print()" class="text-xs font-semibold bg-linkedin-500 hover:bg-linkedin-600 text-white px-3.5 py-1.5 rounded-full transition shadow-sm flex items-center gap-1.5">
+          <i class="fa-solid fa-print"></i> Export CV
+        </button>
       </div>
     </div>
   </nav>
 
-  <!-- Premium Editorial Header Panel -->
-  <header class="py-14 bg-alabaster-200 border-b border-alabaster-300 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-[0.015] pointer-events-none bg-[radial-gradient(#708238_1.5px,transparent_1.5px)] [background-size:20px_20px]"></div>
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
-      <div class="flex flex-col lg:flex-row items-center gap-12">
-        
-        <!-- Curvaceous Organic Avatar border -->
-        <div class="relative">
-          <div class="w-44 h-44 md:w-52 md:h-52 rounded-[2.5rem] border border-taupe-400 bg-white flex items-center justify-center overflow-hidden p-2 shadow-sm transition-transform duration-500 hover:rotate-2">
-            <!-- Main photo with localized error fallback to stylized serif letters -->
-            <img src="Sachin Gupta.jpg" alt="Prof. (Dr.) Sachin Gupta" class="w-full h-full object-cover rounded-[2rem]" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="hidden w-full h-full rounded-[2rem] bg-alabaster-100 flex-col items-center justify-center font-serif text-center p-4">
-              <span class="text-5xl font-light text-taupe-600">SG</span>
-              <span class="text-[9px] uppercase tracking-widest text-charcoal-700 mt-2 font-semibold">Prof. Sachin Gupta</span>
-            </div>
-          </div>
-          <!-- Earthy badge -->
-          <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-white border border-taupe-400 text-charcoal-700 text-[10px] tracking-wider uppercase font-semibold px-4 py-1 rounded-full shadow-sm flex items-center gap-2 whitespace-nowrap">
-            <span class="w-1.5 h-1.5 rounded-full bg-sage-500"></span>
-            Dr. Sachin Gupta
-          </div>
+  <!-- Social Media Profile Banner & Identity Block -->
+  <div class="max-w-6xl mx-auto mt-6 px-4">
+    <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-social relative print-card">
+      
+      <!-- Styled cover banner pattern (Corporate Blue gradient matching LinkedIn style) -->
+      <div class="h-36 md:h-48 bg-gradient-to-r from-linkedin-500 via-linkedin-600 to-linkedin-700 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#FFF_2px,transparent_2px)] [background-size:16px_16px]"></div>
+        <div class="absolute bottom-4 right-4 bg-white/10 backdrop-blur-md text-white text-[11px] font-mono px-3 py-1 rounded-full border border-white/25">
+          Updated: Feb 2026 • 24 Years Experience
         </div>
+      </div>
 
-        <!-- Meta Bio Segment -->
-        <div class="text-center lg:text-left flex-1">
-          <div class="inline-flex items-center gap-2 bg-sage-50 text-sage-600 text-xs tracking-wider uppercase font-semibold px-3 py-1 rounded-full border border-sage-100 mb-4">
-            <i class="fa-solid fa-leaf text-[10px]"></i> Dean: Research & Innovation
-          </div>
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-medium tracking-tight text-charcoal-900 mb-3">
-            Prof. (Dr.) Sachin Gupta
-          </h1>
-          <p class="text-lg md:text-xl text-charcoal-700 font-serif italic mb-5">
-            Professor, Department of Computer Science & Engineering
-          </p>
+      <!-- Avatar & Vital Stats Section -->
+      <div class="px-6 md:px-8 pb-6 pt-2 relative">
+        <div class="flex flex-col md:flex-row items-center md:items-end justify-between -mt-16 md:-mt-20 gap-4 mb-4">
           
-          <div class="flex flex-wrap justify-center lg:justify-start gap-4 text-xs text-charcoal-700 mb-6 font-medium">
-            <span class="flex items-center gap-1.5"><i class="fa-regular fa-compass text-sage-500"></i> MAIT, New Delhi</span>
-            <span class="text-taupe-400">•</span>
-            <span class="flex items-center gap-1.5"><i class="fa-regular fa-clock text-sage-500"></i> 24 Years in Teaching</span>
-            <span class="text-taupe-400">•</span>
-            <span class="flex items-center gap-1.5"><i class="fa-regular fa-id-badge text-sage-500"></i> SMIEEE</span>
+          <!-- Avatar with dynamic status indicator -->
+          <div class="relative group">
+            <div class="w-32 h-32 md:w-36 md:h-36 rounded-full border-4 border-white bg-slate-100 flex items-center justify-center overflow-hidden shadow-lg p-1 bg-white">
+              <img src="Sachin Gupta.jpg" alt="Prof. (Dr.) Sachin Gupta" class="w-full h-full object-cover rounded-full group-hover:scale-105 transition duration-500" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="hidden w-full h-full bg-slate-100 flex-col items-center justify-center font-serif text-center">
+                <span class="text-4xl font-semibold text-linkedin-500">SG</span>
+              </div>
+            </div>
+            <div class="absolute bottom-1 right-2 w-5 h-5 bg-emerald-500 border-4 border-white rounded-full shadow" title="Actively Guiding PhD Scholars"></div>
           </div>
 
-          <!-- Social Matrix -->
-          <div class="flex flex-wrap gap-2 justify-center lg:justify-start no-print">
-            <a href="mailto:deanresearch@mait.ac.in" class="bg-white hover:bg-alabaster-100 border border-taupe-400 hover:border-sage-500 text-charcoal-700 hover:text-sage-600 transition-all px-4 py-2 rounded-lg text-xs font-semibold flex items-center gap-2">
-              <i class="fa-regular fa-envelope"></i> email
+          <!-- Quick Actions & Counters -->
+          <div class="flex flex-wrap gap-3 justify-center">
+            <a href="mailto:deanresearch@mait.ac.in" class="bg-linkedin-500 hover:bg-linkedin-600 text-white font-semibold px-5 py-2 rounded-full text-xs transition shadow-sm flex items-center gap-1.5">
+              <i class="fa-solid fa-paper-plane"></i> Send Direct Message
             </a>
-            <a href="https://github.com/SachinIWT" target="_blank" class="bg-white hover:bg-alabaster-100 border border-taupe-400 hover:border-sage-500 text-charcoal-700 hover:text-sage-600 transition-all px-4 py-2 rounded-lg text-xs font-semibold flex items-center gap-2">
-              <i class="fa-brands fa-github"></i> github
-            </a>
-            <a href="https://www.linkedin.com/in/drsachingupta/" target="_blank" class="bg-white hover:bg-alabaster-100 border border-taupe-400 hover:border-sage-500 text-charcoal-700 hover:text-sage-600 transition-all px-4 py-2 rounded-lg text-xs font-semibold flex items-center gap-2">
-              <i class="fa-brands fa-linkedin-in"></i> linkedin
-            </a>
-            <a href="https://ipfs.io/ipfs/Qmd4ES8WXhvzUhaxKBBJBpU8kuf6iY3ZkjkJP2rbBmvpHW/" target="_blank" class="bg-white hover:bg-alabaster-100 border border-taupe-400 hover:border-sage-500 text-charcoal-700 hover:text-sage-600 transition-all px-4 py-2 rounded-lg text-xs font-semibold flex items-center gap-2">
-              <i class="fa-solid fa-cubes"></i> web3-ipfs
-            </a>
-            <button onclick="window.print()" class="bg-sage-500 hover:bg-sage-600 text-white font-semibold hover:scale-105 transition-all px-5 py-2 rounded-lg text-xs flex items-center gap-2 shadow-sm">
-              <i class="fa-solid fa-print"></i> EXPORT RESUME
+            <button onclick="shareProfile()" class="bg-slate-100 hover:bg-slate-200 text-linkedin-900 font-semibold px-4 py-2 rounded-full text-xs transition flex items-center gap-1.5 no-print">
+              <i class="fa-solid fa-arrow-up-from-bracket"></i> Share Feed
             </button>
           </div>
         </div>
-      </div>
-    </div>
-  </header>
 
-  <!-- Stats Panel -->
-  <section class="max-w-7xl mx-auto px-6 -mt-6 relative z-20 no-print">
-    <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
-      <div class="bg-white border border-taupe-400/40 p-4 rounded-2xl text-center hover:border-sage-500/80 transition-colors duration-300">
-        <span class="block text-2xl md:text-3xl font-serif font-semibold text-sage-500">24</span>
-        <span class="text-[10px] tracking-wider uppercase text-charcoal-700 font-semibold">Years Exp</span>
-      </div>
-      <div class="bg-white border border-taupe-400/40 p-4 rounded-2xl text-center hover:border-sage-500/80 transition-colors duration-300">
-        <span class="block text-2xl md:text-3xl font-serif font-semibold text-charcoal-900">13</span>
-        <span class="text-[10px] tracking-wider uppercase text-charcoal-700 font-semibold">Journals</span>
-      </div>
-      <div class="bg-white border border-taupe-400/40 p-4 rounded-2xl text-center hover:border-sage-500/80 transition-colors duration-300">
-        <span class="block text-2xl md:text-3xl font-serif font-semibold text-charcoal-900">32</span>
-        <span class="text-[10px] tracking-wider uppercase text-charcoal-700 font-semibold">Conferences</span>
-      </div>
-      <div class="bg-white border border-taupe-400/40 p-4 rounded-2xl text-center hover:border-sage-500/80 transition-colors duration-300">
-        <span class="block text-2xl md:text-3xl font-serif font-semibold text-charcoal-900">30</span>
-        <span class="text-[10px] tracking-wider uppercase text-charcoal-700 font-semibold">Books & Ch</span>
-      </div>
-      <div class="bg-white border border-taupe-400/40 p-4 rounded-2xl text-center hover:border-sage-500/80 transition-colors duration-300">
-        <span class="block text-2xl md:text-3xl font-serif font-semibold text-sage-500">5</span>
-        <span class="text-[10px] tracking-wider uppercase text-charcoal-700 font-semibold">Patents</span>
-      </div>
-      <div class="bg-white border border-taupe-400/40 p-4 rounded-2xl text-center hover:border-sage-500/80 transition-colors duration-300">
-        <span class="block text-2xl md:text-3xl font-serif font-semibold text-charcoal-900">10</span>
-        <span class="text-[10px] tracking-wider uppercase text-charcoal-700 font-semibold">PhDs Guided</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Core Dashboard Layout -->
-  <main class="max-w-7xl mx-auto px-6 py-10">
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
-      
-      <!-- Minimalist Editorial Sidebar -->
-      <aside class="lg:col-span-1 space-y-8">
-        <div class="bg-white border border-taupe-400/40 p-6 rounded-3xl space-y-6 print-card">
+        <!-- Bio Details -->
+        <div class="text-center md:text-left space-y-2">
+          <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
+            <h1 class="text-2xl md:text-3xl font-bold text-linkedin-900 font-serif">Prof. (Dr.) Sachin Gupta</h1>
+            <i class="fa-solid fa-circle-check text-linkedin-500 text-lg" title="Verified Faculty Profile"></i>
+          </div>
+          <p class="text-sm md:text-base text-slate-600 font-medium">Professor &amp; Dean (Research &amp; Innovation), CSE Department at Maharaja Agrasen Institute of Technology (MAIT)</p>
           
-          <!-- Contact Coordinates -->
-          <div>
-            <h3 class="text-xs font-semibold uppercase tracking-widest text-sage-500 mb-4 flex items-center gap-2">
-              <i class="fa-regular fa-compass"></i> Coordinates
-            </h3>
-            <div class="space-y-4 text-xs text-charcoal-700">
-              <div class="flex flex-col">
-                <span class="text-[10px] text-taupe-600 uppercase font-bold tracking-wider">Residence</span>
-                <span class="font-medium mt-0.5">F-52, Rajouri Garden, New Delhi, IN</span>
-              </div>
-              <div class="flex flex-col">
-                <span class="text-[10px] text-taupe-600 uppercase font-bold tracking-wider">Primary Email</span>
-                <span class="font-medium mt-0.5 break-words">sachin.gupta@mait.ac.in</span>
-              </div>
-              <div class="flex flex-col">
-                <span class="text-[10px] text-taupe-600 uppercase font-bold tracking-wider">Personal Connection</span>
-                <span class="font-medium mt-0.5 break-words">sachinbhoomi@gmail.com</span>
-              </div>
-            </div>
+          <div class="flex flex-wrap justify-center md:justify-start gap-4 text-xs text-slate-600 font-medium pt-1.5">
+            <span><i class="fa-regular fa-compass text-linkedin-500 mr-1"></i> F-52, Rajouri Garden, Delhi, India</span>
+            <span><i class="fa-solid fa-award text-linkedin-500 mr-1"></i> Senior Member IEEE (SMIEEE)</span>
+            <span><i class="fa-solid fa-users text-linkedin-500 mr-1"></i> 11,500+ Graduates Motivated</span>
           </div>
+        </div>
 
-          <hr class="border-alabaster-200">
-
-          <!-- Core Certifications badges inside sidebar -->
+        <!-- Social Statistics Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 border-t border-slate-200 pt-6 text-center md:text-left">
           <div>
-            <h3 class="text-xs font-semibold uppercase tracking-widest text-charcoal-900 mb-4 flex items-center gap-2">
-              <i class="fa-solid fa-ribbon text-sage-500"></i> Credentials
-            </h3>
-            <div class="space-y-3 text-xs">
-              <div class="flex items-center gap-3 bg-alabaster-50 p-2.5 rounded-xl border border-tactile hover:border-sage-500/40 transition-colors">
-                <i class="fa-brands fa-microsoft text-sky-600 text-lg w-5 text-center"></i>
-                <div>
-                  <span class="block font-semibold">Microsoft Certified</span>
-                  <span class="text-[10px] text-charcoal-700">Educator / MTA Developer</span>
-                </div>
-              </div>
-              <div class="flex items-center gap-3 bg-alabaster-50 p-2.5 rounded-xl border border-tactile hover:border-sage-500/40 transition-colors">
-                <i class="fa-brands fa-google text-red-500 text-lg w-5 text-center"></i>
-                <div>
-                  <span class="block font-semibold">Google Certified</span>
-                  <span class="text-[10px] text-charcoal-700">Educator (ID: 17413235)</span>
-                </div>
-              </div>
-              <div class="flex items-center gap-3 bg-alabaster-50 p-2.5 rounded-xl border border-tactile hover:border-sage-500/40 transition-colors">
-                <i class="fa-solid fa-cube text-orange-500 text-lg w-5 text-center"></i>
-                <div>
-                  <span class="block font-semibold">Oracle Certified</span>
-                  <span class="text-[10px] text-charcoal-700">Java Professional (OCJP)</span>
-                </div>
-              </div>
-              <div class="flex items-center gap-3 bg-alabaster-50 p-2.5 rounded-xl border border-tactile hover:border-sage-500/40 transition-colors">
-                <i class="fa-solid fa-network-wired text-purple-500 text-lg w-5 text-center"></i>
-                <div>
-                  <span class="block font-semibold">Neo4j Professional</span>
-                  <span class="text-[10px] text-charcoal-700">Certified Professional</span>
-                </div>
-              </div>
-              <div class="flex items-center gap-3 bg-alabaster-50 p-2.5 rounded-xl border border-tactile hover:border-sage-500/40 transition-colors">
-                <i class="fa-solid fa-server text-blue-600 text-lg w-5 text-center"></i>
-                <div>
-                  <span class="block font-semibold">IBM Systems architect</span>
-                  <span class="text-[10px] text-charcoal-700">DB2 730, RAD 255 & RSA</span>
-                </div>
-              </div>
-            </div>
+            <span class="block text-xl md:text-2xl font-bold text-linkedin-900 font-serif">13</span>
+            <span class="text-xs text-slate-500">SCIE/Scopus Journals</span>
           </div>
+          <div>
+            <span class="block text-xl md:text-2xl font-bold text-linkedin-900 font-serif">32</span>
+            <span class="text-xs text-slate-500">Conferences presented</span>
+          </div>
+          <div>
+            <span class="block text-xl md:text-2xl font-bold text-linkedin-900 font-serif">30</span>
+            <span class="text-xs text-slate-500">Books &amp; Book Chapters</span>
+          </div>
+          <div>
+            <span class="block text-xl md:text-2xl font-bold text-linkedin-900 font-serif">10</span>
+            <span class="text-xs text-slate-500">PhD Scholars Guided</span>
+          </div>
+        </div>
 
-          <hr class="border-alabaster-200">
+      </div>
+    </div>
+  </div>
 
-          <!-- Global Filter System within the sidebar -->
-          <div class="no-print">
-            <h3 class="text-xs font-semibold uppercase tracking-widest text-charcoal-900 mb-3 flex items-center gap-2">
-              <i class="fa-solid fa-magnifying-glass text-sage-500"></i> Instant Search
-            </h3>
-            <div class="relative">
-              <input type="text" id="global-search" onkeyup="filterContent()" placeholder="Filter active panel..." class="w-full pl-9 pr-4 py-2.5 border border-taupe-400/50 bg-alabaster-50 rounded-xl text-xs focus:outline-none focus:ring-1 focus:ring-sage-500 focus:border-transparent">
-              <i class="fa-solid fa-filter absolute left-3 top-3.5 text-taupe-600 text-xs"></i>
+  <!-- Main Grid Area -->
+  <main class="max-w-6xl mx-auto px-4 mt-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- LEFT SIDEBAR: QUICK REVIEWS / STORIES (GKOBERGER / INSTAGRAM INSPIRED) -->
+      <aside class="lg:col-span-4 space-y-6">
+        
+        <!-- Instagram/Social style Highlights Circles -->
+        <div class="bg-white border border-slate-200 p-5 rounded-3xl shadow-social no-print">
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Highlights</h3>
+          <div class="flex items-center gap-4 overflow-x-auto pb-2">
+            <!-- Highlight 1 -->
+            <button onclick="switchTab('profile')" class="flex flex-col items-center gap-1 flex-shrink-0 group">
+              <div class="w-12 h-12 rounded-full p-[2px] bg-gradient-to-tr from-linkedin-500 to-blue-400 group-hover:scale-105 transition">
+                <div class="w-full h-full rounded-full bg-white flex items-center justify-center text-linkedin-900 text-xs font-bold font-serif">24Y</div>
+              </div>
+              <span class="text-[10px] font-semibold text-linkedin-900">Experience</span>
+            </button>
+            <!-- Highlight 2 -->
+            <button onclick="switchTab('supervision')" class="flex flex-col items-center gap-1 flex-shrink-0 group">
+              <div class="w-12 h-12 rounded-full p-[2px] bg-gradient-to-tr from-linkedin-500 to-blue-400 group-hover:scale-105 transition">
+                <div class="w-full h-full rounded-full bg-white flex items-center justify-center text-linkedin-900 text-xs">🎓</div>
+              </div>
+              <span class="text-[10px] font-semibold text-linkedin-900">Advising</span>
+            </button>
+            <!-- Highlight 3 -->
+            <button onclick="switchTab('patents')" class="flex flex-col items-center gap-1 flex-shrink-0 group">
+              <div class="w-12 h-12 rounded-full p-[2px] bg-gradient-to-tr from-linkedin-500 to-blue-400 group-hover:scale-105 transition">
+                <div class="w-full h-full rounded-full bg-white flex items-center justify-center text-linkedin-900 text-xs">💡</div>
+              </div>
+              <span class="text-[10px] font-semibold text-linkedin-900">Patents</span>
+            </button>
+            <!-- Highlight 4 -->
+            <button onclick="switchTab('books')" class="flex flex-col items-center gap-1 flex-shrink-0 group">
+              <div class="w-12 h-12 rounded-full p-[2px] bg-gradient-to-tr from-linkedin-500 to-blue-400 group-hover:scale-105 transition">
+                <div class="w-full h-full rounded-full bg-white flex items-center justify-center text-linkedin-900 text-xs">📚</div>
+              </div>
+              <span class="text-[10px] font-semibold text-linkedin-900">Books</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Bio card coordinates block -->
+        <div class="bg-white border border-slate-200 p-6 rounded-3xl shadow-social print-card">
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-1.5">
+            <i class="fa-regular fa-compass text-linkedin-500"></i> Profile Coordinates
+          </h3>
+          <div class="space-y-4 text-xs text-linkedin-900">
+            <div class="flex flex-col">
+              <span class="text-[10px] text-slate-400 uppercase tracking-wide">University Affiliation</span>
+              <span class="font-semibold mt-0.5">Maharaja Agrasen Institute of Technology</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[10px] text-slate-400 uppercase tracking-wide">Post-PhD Legacy</span>
+              <span class="font-semibold mt-0.5">9 Years, 2 Months Active Research</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[10px] text-slate-400 uppercase tracking-wide">Doctoral Specialization</span>
+              <span class="font-semibold mt-0.5 italic">"Security and QoS in Wireless Sensor Networks" (IKG PTU Jalandhar, 2016)</span>
             </div>
           </div>
         </div>
 
-        <!-- Notable Honors Mini Card -->
-        <div class="bg-alabaster-200 border border-taupe-400/40 p-6 rounded-3xl relative overflow-hidden print-card">
-          <h4 class="font-serif italic font-semibold text-sm text-charcoal-900 flex items-center gap-2 mb-3">
-            <i class="fa-solid fa-award text-sage-500"></i> Elite Honors
-          </h4>
-          <ul class="text-xs space-y-3 text-charcoal-700">
-            <li class="flex items-start gap-2">
-              <span class="text-sage-500">✔</span>
-              <span><strong>AICRA National Award (2024):</strong> Best Contribution in AI Literature.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-sage-500">✔</span>
-              <span><strong>Illustrious Alumni (2023):</strong> Deen Dayal Upadhyaya College (Delhi University).</span>
-            </li>
-          </ul>
+        <!-- Endorsements widgets -->
+        <div class="bg-white border border-slate-200 p-6 rounded-3xl shadow-social no-print">
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-1.5">
+            <i class="fa-regular fa-square-check text-linkedin-500"></i> Skill Endorsements
+          </h3>
+          <p class="text-xs text-slate-500 mb-3 leading-relaxed">Endorse Prof. Gupta's key research structures directly:</p>
+          <div class="space-y-2.5 text-xs text-linkedin-900 font-medium">
+            <button onclick="endorse('blockchain')" class="w-full flex items-center justify-between p-2.5 bg-slate-50 hover:bg-slate-100 rounded-xl transition border border-slate-200">
+              <span>🔗 Blockchain Cryptography & SCM</span>
+              <span id="endorse-blockchain" class="bg-white text-linkedin-500 px-2 py-0.5 rounded border border-slate-300 font-bold">142</span>
+            </button>
+            <button onclick="endorse('wsn')" class="w-full flex items-center justify-between p-2.5 bg-slate-50 hover:bg-slate-100 rounded-xl transition border border-slate-200">
+              <span>📡 Wireless Sensor Networks</span>
+              <span id="endorse-wsn" class="bg-white text-linkedin-500 px-2 py-0.5 rounded border border-slate-300 font-bold">98</span>
+            </button>
+            <button onclick="endorse('ai')" class="w-full flex items-center justify-between p-2.5 bg-slate-50 hover:bg-slate-100 rounded-xl transition border border-slate-200">
+              <span>🧠 Explainable AI Systems</span>
+              <span id="endorse-ai" class="bg-white text-linkedin-500 px-2 py-0.5 rounded border border-slate-300 font-bold">120</span>
+            </button>
+          </div>
         </div>
+
+        <!-- Direct Connect Messenger Interface -->
+        <div class="bg-white border border-slate-200 p-6 rounded-3xl shadow-social no-print">
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-1.5">
+            <i class="fa-regular fa-comment-dots text-linkedin-500"></i> Direct DM Terminal
+          </h3>
+          <div class="space-y-3">
+            <textarea id="direct-message" rows="3" placeholder="Inquire about PhD positions or research collaborations..." class="w-full p-3 border border-slate-200 rounded-xl text-xs focus:ring-1 focus:ring-linkedin-500 focus:outline-none bg-slate-50 focus:bg-white transition-all"></textarea>
+            <button onclick="sendMockDM()" class="w-full bg-linkedin-500 hover:bg-linkedin-600 text-white text-xs font-bold py-2 rounded-xl transition-all shadow-sm">
+              Send Message
+            </button>
+            <p id="dm-success" class="hidden text-[11px] text-emerald-600 text-center font-semibold mt-1">Message sent to digital queue! (Demo mode)</p>
+          </div>
+        </div>
+
       </aside>
 
-      <!-- Main Content Dynamic Panels -->
-      <section class="lg:col-span-3 space-y-6">
+      <!-- RIGHT FEED AREA: CHRONOLOGICAL POST STREAM -->
+      <section class="lg:col-span-8 space-y-6">
         
-        <!-- Tab Navigation (Desktop and Mobile) -->
-        <div class="no-print">
-          <!-- Mobile Custom Selector -->
-          <div class="block sm:hidden">
-            <label for="tab-select" class="sr-only">Nav Tab Select</label>
-            <select id="tab-select" onchange="switchTab(this.value)" class="w-full py-2.5 px-3 border border-taupe-400 bg-white rounded-xl text-charcoal-900 font-medium focus:outline-none focus:ring-1 focus:ring-sage-500">
-              <option value="profile">Profile Matrix</option>
-              <option value="journals">Journals (13 SCIE/Scopus)</option>
-              <option value="conferences">Conferences (32 Proc.)</option>
-              <option value="books">Books & Textbooks (30)</option>
-              <option value="patents">Patents Hub (5)</option>
-              <option value="supervision">Research Supervision & Mentorship</option>
-            </select>
-          </div>
-
-          <!-- Desktop Tabs -->
-          <nav class="hidden sm:flex flex-wrap gap-1 border-b border-taupe-400/40 bg-white p-1.5 rounded-2xl" aria-label="Tabs">
-            <button onclick="switchTab('profile')" data-tab="profile" class="tab-btn px-4 py-2.5 rounded-xl text-xs tracking-wider uppercase font-semibold transition flex items-center gap-2 text-sage-500 bg-sage-50 border border-sage-100">
-              <i class="fa-solid fa-square-poll-vertical text-xs"></i> Matrix
+        <!-- Feed Categorizers (Nav Tab selector) -->
+        <div class="no-print border-b border-slate-200 pb-2">
+          <nav class="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wider text-linkedin-900">
+            <button onclick="switchTab('feed')" data-tab="feed" class="tab-btn px-4 py-2 rounded-full transition-all bg-linkedin-500 text-white shadow-sm">
+              <i class="fa-solid fa-list mr-1"></i> Feed Updates
             </button>
-            <button onclick="switchTab('journals')" data-tab="journals" class="tab-btn px-4 py-2.5 rounded-xl text-xs tracking-wider uppercase font-semibold text-charcoal-700 hover:text-charcoal-900 hover:bg-alabaster-200 transition flex items-center gap-2">
-              <i class="fa-solid fa-newspaper text-xs"></i> Journals
+            <button onclick="switchTab('profile')" data-tab="profile" class="tab-btn px-4 py-2 rounded-full transition-all hover:bg-slate-250">
+              <i class="fa-solid fa-book-open mr-1"></i> Academic Narrative
             </button>
-            <button onclick="switchTab('conferences')" data-tab="conferences" class="tab-btn px-4 py-2.5 rounded-xl text-xs tracking-wider uppercase font-semibold text-charcoal-700 hover:text-charcoal-900 hover:bg-alabaster-200 transition flex items-center gap-2">
-              <i class="fa-solid fa-microphone text-xs"></i> Conferences
+            <button onclick="switchTab('journals')" data-tab="journals" class="tab-btn px-4 py-2 rounded-full transition-all hover:bg-slate-250">
+              <i class="fa-solid fa-scroll mr-1"></i> Journals
             </button>
-            <button onclick="switchTab('books')" data-tab="books" class="tab-btn px-4 py-2.5 rounded-xl text-xs tracking-wider uppercase font-semibold text-charcoal-700 hover:text-charcoal-900 hover:bg-alabaster-200 transition flex items-center gap-2">
-              <i class="fa-solid fa-book text-xs"></i> Books
+            <button onclick="switchTab('books')" data-tab="books" class="tab-btn px-4 py-2 rounded-full transition-all hover:bg-slate-250">
+              <i class="fa-solid fa-book mr-1"></i> Books
             </button>
-            <button onclick="switchTab('patents')" data-tab="patents" class="tab-btn px-4 py-2.5 rounded-xl text-xs tracking-wider uppercase font-semibold text-charcoal-700 hover:text-charcoal-900 hover:bg-alabaster-200 transition flex items-center gap-2">
-              <i class="fa-solid fa-lightbulb text-xs"></i> Patents
+            <button onclick="switchTab('patents')" data-tab="patents" class="tab-btn px-4 py-2 rounded-full transition-all hover:bg-slate-250">
+              <i class="fa-solid fa-lightbulb mr-1"></i> Patents
             </button>
-            <button onclick="switchTab('supervision')" data-tab="supervision" class="tab-btn px-4 py-2.5 rounded-xl text-xs tracking-wider uppercase font-semibold text-charcoal-700 hover:text-charcoal-900 hover:bg-alabaster-200 transition flex items-center gap-2">
-              <i class="fa-solid fa-id-card-clip text-xs"></i> Supervision
+            <button onclick="switchTab('supervision')" data-tab="supervision" class="tab-btn px-4 py-2 rounded-full transition-all hover:bg-slate-250">
+              <i class="fa-solid fa-user-graduate mr-1"></i> Mentorship
             </button>
           </nav>
         </div>
 
-        <!-- Dynamic Content Panes -->
+        <!-- DYNAMIC PANES -->
         <div class="space-y-6">
 
-          <!-- TAB 1: PROFILE MATRIX (OVERVIEW) -->
-          <div id="pane-profile" class="tab-pane active bg-white border border-taupe-400/40 p-6 rounded-3xl space-y-8 print-card">
+          <!-- PANE: SOCIAL FEED (HIGHLIGHT UPDATES) -->
+          <div id="pane-feed" class="tab-pane active space-y-6">
             
-            <!-- Academic Summary Statement -->
+            <!-- Post Card 1: New SCIE Publication Release -->
+            <div class="bg-white border border-slate-200 p-6 rounded-3xl shadow-social space-y-4 relative hover:border-linkedin-500/20 transition duration-300">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-linkedin-100 flex items-center justify-center text-linkedin-500 font-bold text-sm font-serif">SG</div>
+                  <div>
+                    <span class="block font-bold text-xs text-linkedin-900 font-sans">Prof. (Dr.) Sachin Gupta <span class="text-slate-400 font-normal">published an update</span></span>
+                    <span class="text-[10px] text-slate-400 font-mono">Feb 2026 • SCIE Journal Highlight</span>
+                  </div>
+                </div>
+                <span class="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">SCIE Indexed</span>
+              </div>
+              <p class="text-xs text-linkedin-900 leading-relaxed font-semibold">
+                🔥 Thrilled to share that our paper "Post-Quantum Identity-Based Linkable Ring Signcryption for Edge IoT Devices" has been published in **IEEE Transactions on Consumer Electronics**!
+              </p>
+              <div class="p-3 bg-slate-50 rounded-2xl text-[11px] text-slate-600 font-mono space-y-1">
+                <p><strong>Journal Name:</strong> IEEE Transactions on Consumer Electronics</p>
+                <p><strong>Metrics:</strong> CiteScore 8.3 | Impact Factor 4.3</p>
+                <p><strong>Access:</strong> Volume: 72, Issue: 1, pp. 1876-1889 | <a href="https://doi.org/10.1109/TCE.2026.3655021" target="_blank" class="text-linkedin-500 font-bold hover:underline">10.1109/TCE.2026.3655021</a></p>
+              </div>
+              
+              <!-- Social Action Bar -->
+              <div class="flex items-center justify-between border-t border-slate-100 pt-3.5 text-xs text-linkedin-900 font-medium">
+                <button onclick="addHeart('post-1')" class="flex items-center gap-1.5 hover:text-red-500 transition">
+                  <i class="fa-regular fa-heart"></i> <span id="heart-post-1">45</span> Likes
+                </button>
+                <button onclick="toggleComments('comments-post-1')" class="flex items-center gap-1.5 hover:text-linkedin-500 transition">
+                  <i class="fa-regular fa-comment"></i> <span id="comments-count-post-1">2</span> Comments
+                </button>
+                <button onclick="sharePost('10.1109/TCE.2026.3655021')" class="flex items-center gap-1.5 hover:text-linkedin-500 transition">
+                  <i class="fa-solid fa-arrow-up-from-bracket"></i> Share Paper
+                </button>
+              </div>
+
+              <!-- Comment Area -->
+              <div id="comments-post-1" class="hidden border-t border-slate-100 pt-3 mt-3 space-y-3">
+                <div class="text-[11px] space-y-2" id="comments-list-post-1">
+                  <p class="text-slate-600 font-sans">💬 <strong>Dr. Amit Garg:</strong> Outstanding research on edge cryptography! Crucial for next-generation IoT security parameters.</p>
+                  <p class="text-slate-600 font-sans">💬 <strong>Babita Yadav:</strong> Signcryption limits are excellent. Very promising for medical telemetry networks.</p>
+                </div>
+                <div class="flex gap-2">
+                  <input type="text" id="input-comment-post-1" placeholder="Add a comment..." class="flex-1 px-3 py-1.5 border border-slate-200 rounded-full text-xs focus:ring-1 focus:ring-linkedin-500 focus:outline-none">
+                  <button onclick="postComment('post-1')" class="bg-linkedin-500 text-white px-3 py-1.5 rounded-full text-xs font-bold">Post</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Post Card 2: Book Release update -->
+            <div class="bg-white border border-slate-200 p-6 rounded-3xl shadow-social space-y-4 relative hover:border-linkedin-500/20 transition duration-300">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-linkedin-100 flex items-center justify-center text-linkedin-500 font-bold text-sm font-serif">SG</div>
+                  <div>
+                    <span class="block font-bold text-xs text-linkedin-900 font-sans">Prof. (Dr.) Sachin Gupta <span class="text-slate-400 font-normal">published an update</span></span>
+                    <span class="text-[10px] text-slate-400 font-mono">2025 • Curriculum Resource Highlights</span>
+                  </div>
+                </div>
+                <span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Book Release</span>
+              </div>
+              <p class="text-xs text-linkedin-900 leading-relaxed font-semibold">
+                📚 Proud to announce the publication of our latest High School textbooks for Grades 11 and 12! "Decoding Artificial Intelligence" is curated strictly to match CBSE's modern curriculum.
+              </p>
+              <div class="p-3 bg-slate-50 rounded-2xl text-[11px] text-slate-600 font-mono space-y-1">
+                <p><strong>Title:</strong> Decoding Artificial Intelligence (CBSE Grade 11 &amp; 12 Texts)</p>
+                <p><strong>Publisher:</strong> Sultan Chand &amp; Sons Private Limited</p>
+                <p><strong>ISBN:</strong> 978-8119446278</p>
+              </div>
+              
+              <!-- Social Action Bar -->
+              <div class="flex items-center justify-between border-t border-slate-100 pt-3.5 text-xs text-linkedin-900 font-medium">
+                <button onclick="addHeart('post-2')" class="flex items-center gap-1.5 hover:text-red-500 transition">
+                  <i class="fa-regular fa-heart"></i> <span id="heart-post-2">32</span> Likes
+                </button>
+                <button onclick="toggleComments('comments-post-2')" class="flex items-center gap-1.5 hover:text-linkedin-500 transition">
+                  <i class="fa-regular fa-comment"></i> <span id="comments-count-post-2">1</span> Comments
+                </button>
+                <button onclick="sharePost('Sultan Chand ISBN: 978-8119446278')" class="flex items-center gap-1.5 hover:text-linkedin-500 transition">
+                  <i class="fa-solid fa-arrow-up-from-bracket"></i> Share Textbook Info
+                </button>
+              </div>
+
+              <!-- Comment Area -->
+              <div id="comments-post-2" class="hidden border-t border-slate-100 pt-3 mt-3 space-y-3">
+                <div class="text-[11px] space-y-2" id="comments-list-post-2">
+                  <p class="text-slate-600 font-sans">💬 <strong>CBSE Educator:</strong> Excellent content outline! Extremely helpful for Class 12 CS theory lectures.</p>
+                </div>
+                <div class="flex gap-2">
+                  <input type="text" id="input-comment-post-2" placeholder="Add a comment..." class="flex-1 px-3 py-1.5 border border-slate-200 rounded-full text-xs focus:ring-1 focus:ring-linkedin-500 focus:outline-none">
+                  <button onclick="postComment('post-2')" class="bg-linkedin-500 text-white px-3 py-1.5 rounded-full text-xs font-bold">Post</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Post Card 3: Patent Granted Status update -->
+            <div class="bg-white border border-slate-200 p-6 rounded-3xl shadow-social space-y-4 relative hover:border-linkedin-500/20 transition duration-300">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-linkedin-100 flex items-center justify-center text-linkedin-500 font-bold text-sm font-serif">SG</div>
+                  <div>
+                    <span class="block font-bold text-xs text-linkedin-900 font-sans">Prof. (Dr.) Sachin Gupta <span class="text-slate-400 font-normal">published an update</span></span>
+                    <span class="text-[10px] text-slate-400 font-mono">Oct 2024 • Intellectual Property</span>
+                  </div>
+                </div>
+                <span class="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Design Patent Granted</span>
+              </div>
+              <p class="text-xs text-linkedin-900 leading-relaxed font-semibold">
+                💡 Officially Granted! Our Indian patent / design registration for the **Blockchain Based Health Education Digital Display Unit** is finalized.
+              </p>
+              <div class="p-3 bg-slate-50 rounded-2xl text-[11px] text-slate-600 font-mono space-y-1">
+                <p><strong>Title:</strong> Blockchain Based Health Education Digital Display Unit</p>
+                <p><strong>Design Registration:</strong> 424668-001 (India)</p>
+                <p><strong>Award Span:</strong> Design Filed July 25, 2024 | Granted October 24, 2024</p>
+              </div>
+              
+              <!-- Social Action Bar -->
+              <div class="flex items-center justify-between border-t border-slate-100 pt-3.5 text-xs text-linkedin-900 font-medium">
+                <button onclick="addHeart('post-3')" class="flex items-center gap-1.5 hover:text-red-500 transition">
+                  <i class="fa-regular fa-heart"></i> <span id="heart-post-3">54</span> Likes
+                </button>
+                <button onclick="toggleComments('comments-post-3')" class="flex items-center gap-1.5 hover:text-linkedin-500 transition">
+                  <i class="fa-regular fa-comment"></i> <span id="comments-count-post-3">0</span> Comments
+                </button>
+                <button onclick="sharePost('India Patent 424668-001')" class="flex items-center gap-1.5 hover:text-linkedin-500 transition">
+                  <i class="fa-solid fa-arrow-up-from-bracket"></i> Share IP Info
+                </button>
+              </div>
+
+              <!-- Comment Area -->
+              <div id="comments-post-3" class="hidden border-t border-slate-100 pt-3 mt-3 space-y-3">
+                <div class="text-[11px] space-y-2" id="comments-list-post-3"></div>
+                <div class="flex gap-2">
+                  <input type="text" id="input-comment-post-3" placeholder="Add a comment..." class="flex-1 px-3 py-1.5 border border-slate-200 rounded-full text-xs focus:ring-1 focus:ring-linkedin-500 focus:outline-none">
+                  <button onclick="postComment('post-3')" class="bg-linkedin-500 text-white px-3 py-1.5 rounded-full text-xs font-bold">Post</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Post Card 4: Best Paper Award highlight -->
+            <div class="bg-white border border-slate-200 p-6 rounded-3xl shadow-social space-y-4 relative hover:border-linkedin-500/20 transition duration-300">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-linkedin-100 flex items-center justify-center text-linkedin-500 font-bold text-sm font-serif">SG</div>
+                  <div>
+                    <span class="block font-bold text-xs text-linkedin-900 font-sans">Prof. (Dr.) Sachin Gupta <span class="text-slate-400 font-normal">published an update</span></span>
+                    <span class="text-[10px] text-slate-400 font-mono">June 2025 • Conference Highlights</span>
+                  </div>
+                </div>
+                <span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Best Paper Award</span>
+              </div>
+              <p class="text-xs text-linkedin-900 leading-relaxed font-semibold">
+                🏆 Honored to receive the **Best Paper Award** at the 2025 OPJU International Technology Conference (OTCON) for our collaborative study on Occluded License plate recognition systems!
+              </p>
+              <div class="p-3 bg-slate-50 rounded-2xl text-[11px] text-slate-600 font-mono space-y-1">
+                <p><strong>Title:</strong> Graph Based ANPR in Presence of Occlusion</p>
+                <p><strong>Conference:</strong> 2025 OPJU International Technology Conference (OTCON). Publisher: IEEE.</p>
+                <p><strong>DOI:</strong> <a href="https://doi.org/10.1109/OTCON60673.2025.11070978" target="_blank" class="text-linkedin-500 hover:underline">10.1109/OTCON60673.2025.11070978</a></p>
+              </div>
+              
+              <!-- Social Action Bar -->
+              <div class="flex items-center justify-between border-t border-slate-100 pt-3.5 text-xs text-linkedin-900 font-medium">
+                <button onclick="addHeart('post-4')" class="flex items-center gap-1.5 hover:text-red-500 transition">
+                  <i class="fa-regular fa-heart"></i> <span id="heart-post-4">61</span> Likes
+                </button>
+                <button onclick="toggleComments('comments-post-4')" class="flex items-center gap-1.5 hover:text-linkedin-500 transition">
+                  <i class="fa-regular fa-comment"></i> <span id="comments-count-post-4">1</span> Comments
+                </button>
+                <button onclick="sharePost('10.1109/OTCON60673.2025.11070978')" class="flex items-center gap-1.5 hover:text-linkedin-500 transition">
+                  <i class="fa-solid fa-arrow-up-from-bracket"></i> Share Presentation
+                </button>
+              </div>
+
+              <!-- Comment Area -->
+              <div id="comments-post-4" class="hidden border-t border-slate-100 pt-3 mt-3 space-y-3">
+                <div class="text-[11px] space-y-2" id="comments-list-post-4">
+                  <p class="text-slate-600 font-sans">💬 <strong>Dr. Rajni Bala:</strong> Big congratulations Sachin! Incredible and highly applicable image processing model.</p>
+                </div>
+                <div class="flex gap-2">
+                  <input type="text" id="input-comment-post-4" placeholder="Add a comment..." class="flex-1 px-3 py-1.5 border border-slate-200 rounded-full text-xs focus:ring-1 focus:ring-linkedin-500 focus:outline-none">
+                  <button onclick="postComment('post-4')" class="bg-linkedin-500 text-white px-3 py-1.5 rounded-full text-xs font-bold">Post</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- PANE: ACADEMIC NARRATIVE -->
+          <div id="pane-profile" class="tab-pane bg-white border border-slate-200 p-6 rounded-3xl shadow-social space-y-8 print-card">
             <div>
-              <h2 class="text-2xl font-serif text-charcoal-900 border-b border-alabaster-200 pb-3 mb-4 flex items-center gap-2">
-                <span class="w-2.5 h-2.5 bg-sage-500 rounded-full inline-block"></span> Profile Executive Statement
+              <h2 class="text-2xl font-serif text-linkedin-900 border-b border-slate-200 pb-3 mb-4 flex items-center gap-2">
+                <span class="w-2.5 h-2.5 bg-linkedin-500 rounded-full inline-block"></span> Profile Narrative
               </h2>
-              <p class="text-charcoal-700 leading-relaxed text-sm">
+              <p class="text-linkedin-900 leading-relaxed text-sm">
                 Prof. (Dr.) Sachin Gupta is a distinguished academician and institutional administrator, currently serving as the <strong>Dean of Research and Innovation</strong> and Professor of Computer Science at Maharaja Agrasen Institute of Technology (MAIT). His professional legacy spans over <strong>24 years</strong> of elite research, dynamic teaching, and institution building. 
               </p>
-              <p class="text-charcoal-700 leading-relaxed text-sm mt-3">
+              <p class="text-linkedin-900 leading-relaxed text-sm mt-3">
                 Over his post-Ph.D. tenure of more than 9 years, his research on <strong>Wireless Sensor Networks, Blockchain systems, and Artificial Intelligence</strong> has culminated in the supervision of 10 Ph.D. scholars, 5 patents, and the authorship of essential textbooks implemented across CBSE's nationwide higher-secondary curricula for Grades 9 through 12.
               </p>
             </div>
 
-            <!-- Academic Qualifications Terminal Matrix -->
+            <!-- Qualification Metrics Grid -->
             <div>
-              <h2 class="text-xl font-serif text-charcoal-900 border-b border-alabaster-200 pb-3 mb-4 flex items-center gap-2">
-                <i class="fa-solid fa-book-open text-sage-500"></i> Academic Metrics
+              <h2 class="text-xl font-serif text-linkedin-900 border-b border-slate-200 pb-3 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-book-open text-linkedin-500"></i> Academic Degrees
               </h2>
-              <div class="overflow-x-auto bg-alabaster-100 p-4 rounded-2xl border border-tactile text-xs">
+              <div class="overflow-x-auto bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs">
                 <table class="w-full text-left">
                   <thead>
-                    <tr class="text-charcoal-700 border-b border-taupe-400/30">
+                    <tr class="text-linkedin-900 border-b border-slate-200 font-bold">
                       <th class="py-2.5">Degree</th>
                       <th class="py-2.5">Institution/University</th>
                       <th class="py-2.5">Timeline</th>
-              
                       <th class="py-2.5 text-right">Remarks</th>
                     </tr>
                   </thead>
-                  <tbody class="divide-y divide-taupe-400/20 text-charcoal-700 font-medium">
+                  <tbody class="divide-y divide-slate-200 text-linkedin-900 font-medium">
                     <tr>
-                      <td class="py-3 font-semibold text-charcoal-900 font-serif">Ph.D. (CSE)</td>
+                      <td class="py-3 font-semibold text-linkedin-900 font-serif">Ph.D. (CSE)</td>
                       <td class="py-3">IKG Punjab Technical University, Jalandhar</td>
                       <td class="py-3">Awarded 2016</td>
-                    
-                      <td class="py-3 text-right text-sage-500">Thesis: Security & QoS in WSN</td>
+                      <td class="py-3 text-right text-linkedin-500">Security & QoS in WSN</td>
                     </tr>
                     <tr>
-                      <td class="py-3 font-semibold text-charcoal-900 font-serif">M.Phil (CS)</td>
+                      <td class="py-3 font-semibold text-linkedin-900 font-serif">M.Phil (CS)</td>
                       <td class="py-3">Madurai Kamraj University (MKU) DDE</td>
                       <td class="py-3">2006-2007</td>
-                     
-                      <td class="py-3 text-right">Computer Science Specialization</td>
+                      <td class="py-3 text-right">71.0% Marks</td>
                     </tr>
                     <tr>
-                      <td class="py-3 font-semibold text-charcoal-900 font-serif">M.Tech (IT)</td>
+                      <td class="py-3 font-semibold text-linkedin-900 font-serif">M.Tech (IT)</td>
                       <td class="py-3">GGSIPU, Delhi</td>
                       <td class="py-3">2003-2006</td>
-                     
-                      <td class="py-3 text-right text-sage-500">Academic Excellence Award</td>
+                      <td class="py-3 text-right text-linkedin-500">80.0% - Academic Excellence</td>
                     </tr>
                     <tr>
-                      <td class="py-3 font-semibold text-charcoal-900 font-serif">MCA</td>
+                      <td class="py-3 font-semibold text-linkedin-900 font-serif">MCA</td>
                       <td class="py-3">IET, Lucknow University</td>
                       <td class="py-3">1999-2002</td>
-                    
-                      <td class="py-3 text-right">1st Division with Honors</td>
-                    </tr>
-                    <tr>
-                      <td class="py-3 font-semibold text-charcoal-900 font-serif">B.Sc. (CS)</td>
-                      <td class="py-3">Deen Dayal Upadhyaya College (DU)</td>
-                      <td class="py-3">1996-1999</td>
-                     
-                      <td class="py-3 text-right">Computer Science Main</td>
+                      <td class="py-3 text-right">83.0% - 1st Division</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
 
-            <!-- Two Column: Incubation & Consultancy Outreach -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <!-- Column 1: Incubation Centre & Bootcamps -->
-              <div class="bg-alabaster-50 p-5 rounded-2xl border border-tactile">
-                <h3 class="font-serif italic font-semibold text-charcoal-900 mb-3 flex items-center gap-2">
-                  <i class="fa-solid fa-seedling text-sage-500"></i> Incubation & Bootcamps
-                </h3>
-                <ul class="text-xs text-charcoal-700 space-y-3 leading-relaxed">
-                  <li>
-                    <strong class="text-charcoal-900 block">AICTE-MoE IDE Bootcamp Mentor</strong>
-                    Delivered intensive bootcamps as expert resource person at SIH - AICTE (Apr 2026), NIT Nagaland (Feb 2026), NIT Manipur (Jan 2026), and IIIT Una (Dec 2025).
-                  </li>
-                  <li>
-                    <strong class="text-charcoal-900 block">MAIIF Incubation Center</strong>
-                    Established the Incubation Centre under Maharaja Agrasen Innovation Foundation, currently supporting 6+ registered startups.
-                  </li>
-                  <li>
-                    <strong class="text-charcoal-900 block">Wadhwani Foundation Partnership</strong>
-                    Certified 17 faculty members and registered over 100 students in the entrepreneurship development program.
-                  </li>
-                </ul>
-              </div>
-
-              <!-- Column 2: Industry Consultancies -->
-              <div class="bg-alabaster-50 p-5 rounded-2xl border border-tactile">
-                <h3 class="font-serif italic font-semibold text-charcoal-900 mb-3 flex items-center gap-2">
-                  <i class="fa-solid fa-briefcase text-sage-500"></i> Industry Consultancy
-                </h3>
-                <ul class="text-xs text-charcoal-700 space-y-3 leading-relaxed">
-                  <li>
-                    <strong class="text-charcoal-900 block">AI Product Consultant @ MethodAI</strong>
-                    Bridging academia & industry. Running AI Literacy programs across MCD schools in Delhi and maintaining over 200+ elite school clients.
-                  </li>
-                  <li>
-                    <strong class="text-charcoal-900 block">DSIR Technical Consultant</strong>
-                    Collaborative Technical Consultant certificate from CDC, Department of Scientific and Industrial Research, Ministry of Science & Tech, Govt of India.
-                  </li>
-                  <li>
-                    <strong class="text-charcoal-900 block">Content Consultant @ DcodeAI.com</strong>
-                    Led over 30+ comprehensive teacher training workshops on machine learning across top institutions nationwide.
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- TAB 2: JOURNAL PUBLICATIONS -->
-          <div id="pane-journals" class="tab-pane bg-white border border-taupe-400/40 p-6 rounded-3xl space-y-4 print-card">
-            <div class="flex justify-between items-center border-b border-alabaster-200 pb-3 flex-wrap gap-2">
-              <h2 class="text-xl font-serif text-charcoal-900 flex items-center gap-2">
-                <i class="fa-solid fa-scroll text-sage-500"></i> Journal Publications
-              </h2>
-              <div class="flex gap-2 no-print">
-                <button onclick="filterJournals('ALL')" class="journal-filter-btn px-3 py-1 text-xs rounded bg-sage-500 text-white shadow-sm font-semibold">All</button>
-                <button onclick="filterJournals('SCIE')" class="journal-filter-btn px-3 py-1 text-xs rounded bg-alabaster-100 text-charcoal-700 hover:bg-alabaster-200 transition-colors font-semibold">SCIE</button>
-                <button onclick="filterJournals('Scopus')" class="journal-filter-btn px-3 py-1 text-xs rounded bg-alabaster-100 text-charcoal-700 hover:bg-alabaster-200 transition-colors font-semibold">Scopus</button>
-              </div>
-            </div>
-
-            <!-- List of Journal Items -->
-            <div class="space-y-4" id="journals-list">
-              <!-- Item 1 -->
-              <div class="journal-card p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/20" data-index="SCIE">
-                <div class="flex flex-wrap gap-2 mb-2 items-center justify-between">
-                  <span class="bg-sage-50 text-sage-600 text-[10px] uppercase tracking-wider font-semibold border border-sage-100 px-2.5 py-0.5 rounded-full">SCIE Indexed</span>
-                  <span class="text-xs text-charcoal-700">Feb 2026</span>
-                </div>
-                <h4 class="font-serif font-semibold text-charcoal-900 mb-1">Post-Quantum Identity-Based Linkable Ring Signcryption for Edge IoT Devices</h4>
-                <p class="text-xs text-charcoal-700 mb-2">Dr. Sachin Gupta (Second Author) — <em>IEEE Transactions on Consumer Electronics</em></p>
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-charcoal-700">
-                  <span><strong>IF:</strong> 4.3</span>
-                  <span><strong>CiteScore:</strong> 8.3</span>
-                  <span><strong>Volume:</strong> 72(1), pp. 1876-1889</span>
-                  <span><strong>DOI:</strong> <a href="https://doi.org/10.1109/TCE.2026.3655021" target="_blank" class="text-sage-500 hover:underline">10.1109/TCE.2026.3655021</a></span>
-                </div>
-              </div>
-
-              <!-- Item 2 -->
-              <div class="journal-card p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/20" data-index="SCIE">
-                <div class="flex flex-wrap gap-2 mb-2 items-center justify-between">
-                  <span class="bg-sage-50 text-sage-600 text-[10px] uppercase tracking-wider font-semibold border border-sage-100 px-2.5 py-0.5 rounded-full">SCIE Indexed</span>
-                  <span class="text-xs text-charcoal-700">2025</span>
-                </div>
-                <h4 class="font-serif font-semibold text-charcoal-900 mb-1">Cross-Platform Acceleration of Holographic Rendering in IOT Devices using Open CL-Based Heterogeneous Computing</h4>
-                <p class="text-xs text-charcoal-700 mb-2">Dr. Sachin Gupta (Co-Author) — <em>IEEE Transactions on Consumer Electronics</em></p>
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-charcoal-700">
-                  <span><strong>IF:</strong> 4.3</span>
-                  <span><strong>CiteScore:</strong> 8.3</span>
-                  <span><strong>DOI:</strong> <a href="https://doi.org/10.1109/TCE.2025.3597749" target="_blank" class="text-sage-500 hover:underline">10.1109/TCE.2025.3597749</a></span>
-                </div>
-              </div>
-
-              <!-- Item 3 -->
-              <div class="journal-card p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/20" data-index="SCIE">
-                <div class="flex flex-wrap gap-2 mb-2 items-center justify-between">
-                  <span class="bg-sage-50 text-sage-600 text-[10px] uppercase tracking-wider font-semibold border border-sage-100 px-2.5 py-0.5 rounded-full">SCIE Indexed</span>
-                  <span class="text-xs text-charcoal-700">July 2025</span>
-                </div>
-                <h4 class="font-serif font-semibold text-charcoal-900 mb-1">Neural Forensic Analysis for Privacy and Integrity Protection in Biometric Authentication Systems</h4>
-                <p class="text-xs text-charcoal-700 mb-2 font-semibold text-sage-500">Dr. Sachin Gupta (First Author) — <em>IEEE Transactions on Consumer Electronics</em></p>
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-charcoal-700">
-                  <span><strong>IF:</strong> 4.3</span>
-                  <span><strong>CiteScore:</strong> 8.3</span>
-                  <span><strong>DOI:</strong> <a href="https://doi.org/10.1109/tce.2025.3593968" target="_blank" class="text-sage-500 hover:underline">10.1109/tce.2025.3593968</a></span>
-                </div>
-              </div>
-
-              <!-- Item 4 -->
-              <div class="journal-card p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/20" data-index="SCIE">
-                <div class="flex flex-wrap gap-2 mb-2 items-center justify-between">
-                  <span class="bg-sage-50 text-sage-600 text-[10px] uppercase tracking-wider font-semibold border border-sage-100 px-2.5 py-0.5 rounded-full">SCIE Indexed</span>
-                  <span class="text-xs text-charcoal-700">2025</span>
-                </div>
-                <h4 class="font-serif font-semibold text-charcoal-900 mb-1">Next-Generation Optimized Video Coding Mechanism For 6G Wireless Communication Network</h4>
-                <p class="text-xs text-charcoal-700 mb-2">Dr. Sachin Gupta (Co-Author) — <em>IEEE Communications Standards Magazine</em></p>
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-charcoal-700">
-                  <span><strong>IF:</strong> 8.2</span>
-                  <span><strong>CiteScore:</strong> 7.1</span>
-                  <span><strong>DOI:</strong> <a href="https://doi.org/10.1109/MCOMSTD.2025.3575225" target="_blank" class="text-sage-500 hover:underline">10.1109/MCOMSTD.2025.3575225</a></span>
-                </div>
-              </div>
-
-              <!-- Item 5 -->
-              <div class="journal-card p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/20" data-index="SCIE">
-                <div class="flex flex-wrap gap-2 mb-2 items-center justify-between">
-                  <span class="bg-sage-50 text-sage-600 text-[10px] uppercase tracking-wider font-semibold border border-sage-100 px-2.5 py-0.5 rounded-full">SCIE Indexed</span>
-                  <span class="text-xs text-charcoal-700">March 2025</span>
-                </div>
-                <h4 class="font-serif font-semibold text-charcoal-900 mb-1">Mobile Edge Computing Model for Dynamically Processes Tasks Through Multi-UAV Cooperation</h4>
-                <p class="text-xs text-charcoal-700 mb-2">Dr. Sachin Gupta (Co-Author) — <em>Journal of Circuits, Systems and Computers</em></p>
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-charcoal-700">
-                  <span><strong>IF:</strong> 1.278</span>
-                  <span><strong>CiteScore:</strong> 2.6</span>
-                  <span><strong>Issue:</strong> Vol. 34, No. 09</span>
-                  <span><strong>DOI:</strong> <a href="https://doi.org/10.1142/S0218126625502056" target="_blank" class="text-sage-500 hover:underline">10.1142/S0218126625502056</a></span>
-                </div>
-              </div>
-
-              <!-- Item 6 -->
-              <div class="journal-card p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/20" data-index="SCIE">
-                <div class="flex flex-wrap gap-2 mb-2 items-center justify-between">
-                  <span class="bg-sage-50 text-sage-600 text-[10px] uppercase tracking-wider font-semibold border border-sage-100 px-2.5 py-0.5 rounded-full">SCIE Indexed</span>
-                  <span class="text-xs text-charcoal-700">2025</span>
-                </div>
-                <h4 class="font-serif font-semibold text-charcoal-900 mb-1">Blockchain-Based Secure Trust Management Scheme for Internet of Vehicles Over Cyber-Physical System</h4>
-                <p class="text-xs text-charcoal-700 mb-2">Dr. Sachin Gupta (Co-Author) — <em>IEEE Transactions on Intelligent Transportation Systems</em></p>
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-charcoal-700">
-                  <span><strong>IF:</strong> 8.4</span>
-                  <span><strong>CiteScore:</strong> 13.7</span>
-                </div>
-              </div>
-
-              <!-- Item 7 -->
-              <div class="journal-card p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/20" data-index="SCIE">
-                <div class="flex flex-wrap gap-2 mb-2 items-center justify-between">
-                  <span class="bg-sage-50 text-sage-600 text-[10px] uppercase tracking-wider font-semibold border border-sage-100 px-2.5 py-0.5 rounded-full">SCIE Indexed</span>
-                  <span class="text-xs text-charcoal-700">2025</span>
-                </div>
-                <h4 class="font-serif font-semibold text-charcoal-900 mb-1">Unified Fake News Detection Based on loST-Driven Joint Detection Models</h4>
-                <p class="text-xs text-charcoal-700 mb-2">Dr. Sachin Gupta (Co-Author) — <em>IEEE Transactions on Computational Social Systems</em></p>
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-charcoal-700">
-                  <span><strong>IF:</strong> 4.9</span>
-                  <span><strong>CiteScore:</strong> 8.6</span>
-                </div>
-              </div>
-
-              <!-- Item 8 -->
-              <div class="journal-card p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/20" data-index="SCIE">
-                <div class="flex flex-wrap gap-2 mb-2 items-center justify-between">
-                  <span class="bg-sage-50 text-sage-600 text-[10px] uppercase tracking-wider font-semibold border border-sage-100 px-2.5 py-0.5 rounded-full">SCIE Indexed</span>
-                  <span class="text-xs text-charcoal-700">2025</span>
-                </div>
-                <h4 class="font-serif font-semibold text-charcoal-900 mb-1">Zero Trust Management over Consumer Technology based IoT Edge Node for SDN Communication and Control of Cyber-Physical Systems</h4>
-                <p class="text-xs text-charcoal-700 mb-2">Dr. Sachin Gupta (Co-Author) — <em>IEEE Transactions on Consumer Electronics</em></p>
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-charcoal-700">
-                  <span><strong>IF:</strong> 4.3</span>
-                  <span><strong>CiteScore:</strong> 8.3</span>
-                  <span><strong>DOI:</strong> <a href="https://doi.org/10.1109/TCE.2025.3563408" target="_blank" class="text-sage-500 hover:underline">10.1109/TCE.2025.3563408</a></span>
-                </div>
-              </div>
-
-              <!-- Item 9 -->
-              <div class="journal-card p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/20" data-index="Scopus">
-                <div class="flex flex-wrap gap-2 mb-2 items-center justify-between">
-                  <span class="bg-sage-50 text-sage-600 text-[10px] uppercase tracking-wider font-semibold border border-sage-100 px-2.5 py-0.5 rounded-full">Scopus Indexed</span>
-                  <span class="text-xs text-charcoal-700">May 2025</span>
-                </div>
-                <h4 class="font-serif font-semibold text-charcoal-900 mb-1">A Novel Storage Decision Framework for Managing Healthcare Big Data on Blockchain Platform in IoT Integrated Telemedicine Systems</h4>
-                <p class="text-xs text-charcoal-700 mb-2">Dr. Sachin Gupta (Co-Author) — <em>Ingénierie des Systèmes d'Information (ISI)</em></p>
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-charcoal-700">
-                  <span><strong>CiteScore:</strong> 2.5</span>
-                  <span><strong>Issue:</strong> Vol. 30, No. 3, pp. 543-551</span>
-                  <span><strong>DOI:</strong> <a href="https://doi.org/10.18280/isi.300307" target="_blank" class="text-sage-500 hover:underline">10.18280/isi.300307</a></span>
-                </div>
-              </div>
-
-              <!-- Item 10 -->
-              <div class="journal-card p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/20" data-index="Scopus">
-                <div class="flex flex-wrap gap-2 mb-2 items-center justify-between">
-                  <span class="bg-sage-50 text-sage-600 text-[10px] uppercase tracking-wider font-semibold border border-sage-100 px-2.5 py-0.5 rounded-full">Scopus Indexed (Q1)</span>
-                  <span class="text-xs text-charcoal-700">May 2025</span>
-                </div>
-                <h4 class="font-serif font-semibold text-charcoal-900 mb-1">Optimizing Transcranial Focused Ultrasound Parameters: A Methodological Advancement in Non-invasive Brain Stimulation for Next-Gen Clinical Applications</h4>
-                <p class="text-xs text-charcoal-700 mb-2 font-semibold text-sage-500">Dr. Sachin Gupta (First Author) — <em>Neuroscience Informatics</em></p>
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-charcoal-700">
-                  <span><strong>IF:</strong> 2.5</span>
-                  <span><strong>CiteScore:</strong> 5.5</span>
-                  <span><strong>DOI:</strong> <a href="https://doi.org/10.1016/j.neuri.2024.100196" target="_blank" class="text-sage-500 hover:underline">10.1016/j.neuri.2024.100196</a></span>
-                </div>
-              </div>
-
-              <!-- Item 11 -->
-              <div class="journal-card p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/20" data-index="SCIE">
-                <div class="flex flex-wrap gap-2 mb-2 items-center justify-between">
-                  <span class="bg-sage-50 text-sage-600 text-[10px] uppercase tracking-wider font-semibold border border-sage-100 px-2.5 py-0.5 rounded-full">SCIE Indexed</span>
-                  <span class="text-xs text-charcoal-700">Feb 2024</span>
-                </div>
-                <h4 class="font-serif font-semibold text-charcoal-900 mb-1">Energy-Efficient Self-Supervised Technique to Identify Abnormal User Over 5G Network for E-Commerce</h4>
-                <p class="text-xs text-charcoal-700 mb-2">Dr. Sachin Gupta (Co-Author) — <em>IEEE Transactions on Consumer Electronics</em></p>
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-charcoal-700">
-                  <span><strong>IF:</strong> 4.3</span>
-                  <span><strong>CiteScore:</strong> 8.3</span>
-                  <span><strong>Issue:</strong> Vol. 70, No. 1, pp. 493-504</span>
-                  <span><strong>DOI:</strong> <a href="https://doi.org/10.1109/TCE.2023.3348638" target="_blank" class="text-sage-500 hover:underline">10.1109/TCE.2023.3348638</a></span>
-                </div>
-              </div>
-
-              <!-- Item 12 -->
-              <div class="journal-card p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/20" data-index="Scopus">
-                <div class="flex flex-wrap gap-2 mb-2 items-center justify-between">
-                  <span class="bg-sage-50 text-sage-600 text-[10px] uppercase tracking-wider font-semibold border border-sage-100 px-2.5 py-0.5 rounded-full">Scopus, ESCI</span>
-                  <span class="text-xs text-charcoal-700">Feb 2024</span>
-                </div>
-                <h4 class="font-serif font-semibold text-charcoal-900 mb-1">A Comprehensive Framework for Quantitative Risk Assessment of Organizational Networks using FAIR Modified Attack Trees</h4>
-                <p class="text-xs text-charcoal-700 mb-2">Dr. Sachin Gupta (Co-Author) — <em>Frontiers in Computer Science</em></p>
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-charcoal-700">
-                  <span><strong>IF:</strong> 2.7</span>
-                  <span><strong>CiteScore:</strong> 5.3</span>
-                  <span><strong>Issue:</strong> Vol. 6, Article 1304288</span>
-                  <span><strong>DOI:</strong> <a href="https://doi.org/10.3389/fcomp.2024.1304288" target="_blank" class="text-sage-500 hover:underline">10.3389/fcomp.2024.1304288</a></span>
-                </div>
-              </div>
-
-              <!-- Item 13 -->
-              <div class="journal-card p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/20" data-index="Other">
-                <div class="flex flex-wrap gap-2 mb-2 items-center justify-between">
-                  <span class="bg-alabaster-200 text-charcoal-700 text-[10px] uppercase tracking-wider font-semibold border border-taupe-400 px-2.5 py-0.5 rounded-full">Institutional Journal</span>
-                  <span class="text-xs text-charcoal-700">2024</span>
-                </div>
-                <h4 class="font-serif font-semibold text-charcoal-900 mb-1">Telecom Industry Customer Attrition Prediction with Machine Learning Approach</h4>
-                <p class="text-xs text-charcoal-700 mb-2 font-semibold text-sage-500">Dr. Sachin Gupta (First Author) — <em>MAIT Journal of Engineering and Technology</em></p>
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-charcoal-700">
-                  <span><strong>Issue:</strong> Vol. 2, No. 2</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- TAB 3: CONFERENCES -->
-          <div id="pane-conferences" class="tab-pane bg-white border border-taupe-400/40 p-6 rounded-3xl space-y-4 print-card">
-            <div class="flex justify-between items-center border-b border-alabaster-200 pb-3 flex-wrap gap-2">
-              <h2 class="text-xl font-serif text-charcoal-900 flex items-center gap-2">
-                <i class="fa-solid fa-users-viewfinder text-sage-500"></i> Conference Proceedings (Selected)
-              </h2>
-              <span class="bg-sage-50 text-sage-600 font-serif text-xs border border-sage-100 px-2.5 py-1 rounded-full">Total: 32 Presentations</span>
-            </div>
-
-            <!-- List container for conference records -->
-            <div class="space-y-4 max-h-[600px] overflow-y-auto pr-2" id="conferences-list">
-              
-              <!-- Best Paper 1 -->
-              <div class="p-4 rounded-2xl border-2 border-sage-500/20 bg-sage-50/10 hover:border-sage-500 transition relative overflow-hidden">
-                <div class="absolute right-3 top-3 text-sage-500 text-lg"><i class="fa-solid fa-trophy"></i></div>
-                <span class="bg-sage-500 text-white font-serif text-[9px] font-bold px-2.5 py-0.5 rounded-full">BEST PAPER AWARD</span>
-                <span class="text-xs text-charcoal-700 ml-2">Sept 2025</span>
-                <h4 class="font-serif font-semibold text-charcoal-900 mt-2">Use of ICT for Disaster Relief Distribution Across Hostile Terrain</h4>
-                <p class="text-xs text-charcoal-700 mt-1"><strong>Venue:</strong> Int'l Conference on Solidarity Approach in Geography. Published in: <em>Solidarity in Geography and Society</em> (Springer, Cham)</p>
-                <p class="text-[11px] text-charcoal-700 font-serif mt-1">eBook: 978-3-031-86753-8 | DOI: 10.1007/978-3-031-86753-8_26</p>
-              </div>
-
-              <!-- Best Paper 2 -->
-              <div class="p-4 rounded-2xl border-2 border-sage-500/20 bg-sage-50/10 hover:border-sage-500 transition relative overflow-hidden">
-                <div class="absolute right-3 top-3 text-sage-500 text-lg"><i class="fa-solid fa-trophy"></i></div>
-                <span class="bg-sage-500 text-white font-serif text-[9px] font-bold px-2.5 py-0.5 rounded-full">BEST PAPER AWARD</span>
-                <span class="text-xs text-charcoal-700 ml-2">June 2025</span>
-                <h4 class="font-serif font-semibold text-charcoal-900 mt-2">Graph Based ANPR in Presence of Occlusion</h4>
-                <p class="text-xs text-charcoal-700 mt-1"><strong>Venue:</strong> 2025 OPJU International Technology Conference (OTCON). Publisher: IEEE.</p>
-                <p class="text-[11px] text-charcoal-700 font-serif mt-1">DOI: 10.1109/OTCON60673.2025.11070978</p>
-              </div>
-
-              <!-- General Paper Entries -->
-              <div class="p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/10">
-                <span class="text-xs text-sage-500 font-semibold">May 2025</span>
-                <h4 class="font-serif font-semibold text-charcoal-900 mt-1">Developing A Multi-Disease Risk Prediction Model Using Machine Learning</h4>
-                <p class="text-xs text-charcoal-700">2025 IEEE 5th International Conference on Smart Information Systems and Technologies (SIST).</p>
-                <p class="text-[11px] text-charcoal-700 mt-1">DOI: 10.1109/SIST61989.2025.11070588</p>
-              </div>
-
-              <div class="p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/10">
-                <span class="text-xs text-sage-500 font-semibold">June 2025</span>
-                <h4 class="font-serif font-semibold text-charcoal-900 mt-1">Implementation of Al-Driven Intrusion Detection Systems to Analyze Anomalies and Network Traffic Patterns in Healthcare Networks</h4>
-                <p class="text-xs text-charcoal-700">2025 OPJU International Technology Conference (OTCON). Publisher: IEEE.</p>
-                <p class="text-[11px] text-charcoal-700 mt-1">DOI: 10.1109/OTCON60673.2025.11070588</p>
-              </div>
-
-              <div class="p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/10">
-                <span class="text-xs text-sage-500 font-semibold">March 2025</span>
-                <h4 class="font-serif font-semibold text-charcoal-900 mt-1">A Comprehensive Review of Deep Learning Techniques for Lung Disease Diagnostic</h4>
-                <p class="text-xs text-charcoal-700">2025 3rd International Conference on Disruptive Technologies (ICDT). Publisher: IEEE.</p>
-                <p class="text-[11px] text-charcoal-700 mt-1">DOI: 10.1109/ICDT60980.2025.10986398</p>
-              </div>
-
-              <div class="p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/10">
-                <span class="text-xs text-sage-500 font-semibold">Feb 2024</span>
-                <h4 class="font-serif font-semibold text-charcoal-900 mt-1">AI with Consciousness: Advancing Explainability in the Healthcare Sector</h4>
-                <p class="text-xs text-charcoal-700">2023 International Conference on Communication, Security and Artificial Intelligence (ICCSAI). IEEE.</p>
-                <p class="text-[11px] text-charcoal-700 mt-1">ISBN: 979-8-3503-0594-8 | DOI: 10.1109/ICCSAI59793.2023.10421388</p>
-              </div>
-
-              <div class="p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/10">
-                <span class="text-xs text-sage-500 font-semibold">August 2024</span>
-                <h4 class="font-serif font-semibold text-charcoal-900 mt-1">Facial Recognition Advancements with Siamese Networks: A Comprehensive Survey</h4>
-                <p class="text-xs text-charcoal-700">1st International Conference on Computation of Artificial Intelligence & Machine Learning. Springer, Singapore.</p>
-                <p class="text-[11px] text-charcoal-700 mt-1">ISBN: 978-3-031-71484-9 | DOI: 10.1007/978-3-031-71484-9_3</p>
-              </div>
-
-              <div class="p-4 rounded-2xl border border-tactile hover:border-sage-500/60 transition bg-alabaster-50/10">
-                <span class="text-xs text-sage-500 font-semibold">July 2024</span>
-                <h4 class="font-serif font-semibold text-charcoal-900 mt-1">Dementia Vision: Feature Extraction and Comparison using HOG and PCA for Diagnostic Imaging</h4>
-                <p class="text-xs text-charcoal-700">3rd OPJU International Conference (OTCON 3.0). IEEE Xplore.</p>
-                <p class="text-[11px] text-charcoal-700 mt-1">DOI: 10.1109/OTCON59223.2024.10687640</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- TAB 4: BOOKS & TEXTBOOKS -->
-          <div id="pane-books" class="tab-pane bg-white border border-taupe-400/40 p-6 rounded-3xl space-y-6 print-card">
-            <div class="flex justify-between items-center border-b border-alabaster-200 pb-3 flex-wrap gap-2">
-              <h2 class="text-xl font-serif text-charcoal-900 flex items-center gap-2">
-                <i class="fa-solid fa-book-bookmark text-sage-500"></i> Authored Textbooks & Book Chapters
-              </h2>
-              <div class="flex gap-2 text-xs font-semibold">
-                <span class="bg-sage-50 text-sage-600 border border-sage-100 px-2.5 py-0.5 rounded-full">6 Core Books</span>
-                <span class="bg-alabaster-200 text-charcoal-700 border border-taupe-400 px-2.5 py-0.5 rounded-full">24 Book Chapters</span>
-              </div>
-            </div>
-
-            <!-- Published textbooks section -->
-            <div>
-              <h3 class="text-xs uppercase tracking-wider text-charcoal-700 mb-4 flex items-center gap-2 font-bold">
-                <i class="fa-solid fa-shield-halved text-sage-500"></i> Nationally Distributed CBSE School Textbooks
+            <!-- Incubation Outreach & Bootcamps -->
+            <div class="bg-linkedin-50 p-5 rounded-2xl border border-slate-200">
+              <h3 class="font-serif italic font-semibold text-linkedin-900 mb-3 flex items-center gap-2">
+                <i class="fa-solid fa-seedling text-linkedin-500"></i> Incubation &amp; Bootcamps
               </h3>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Book 1 -->
-                <div class="flex gap-4 p-4 rounded-2xl border border-tactile bg-alabaster-50/20 hover:border-sage-500 transition">
-                  <div class="w-14 h-18 bg-alabaster-200 border border-taupe-400 rounded-lg flex flex-col justify-center items-center text-center p-1 text-sage-600 font-serif font-bold text-xs shadow-sm">
-                    <span>AI</span>
-                    <span class="text-[8px] text-charcoal-700 font-normal border-t border-taupe-400 mt-1 pt-0.5">GRADE 12</span>
-                  </div>
-                  <div>
-                    <h4 class="font-serif font-semibold text-charcoal-900 text-xs">Decoding Artificial Intelligence (CBSE Grade 12)</h4>
-                    <p class="text-[11px] text-charcoal-700 mt-0.5">Sultan Chand & Sons Private Limited (2025)</p>
-                    <span class="inline-block bg-sage-50 text-sage-600 text-[9px] font-semibold px-2 py-0.5 rounded-full mt-1.5">ISBN: 978-8119446278</span>
-                  </div>
-                </div>
-
-                <!-- Book 2 -->
-                <div class="flex gap-4 p-4 rounded-2xl border border-tactile bg-alabaster-50/20 hover:border-sage-500 transition">
-                  <div class="w-14 h-18 bg-alabaster-200 border border-taupe-400 rounded-lg flex flex-col justify-center items-center text-center p-1 text-sage-600 font-serif font-bold text-xs shadow-sm">
-                    <span>AI</span>
-                    <span class="text-[8px] text-charcoal-700 font-normal border-t border-taupe-400 mt-1 pt-0.5">GRADE 11</span>
-                  </div>
-                  <div>
-                    <h4 class="font-serif font-semibold text-charcoal-900 text-xs">Decoding Artificial Intelligence (CBSE Grade 11)</h4>
-                    <p class="text-[11px] text-charcoal-700 mt-0.5">Sultan Chand & Sons Private Limited (2025)</p>
-                    <span class="inline-block bg-sage-50 text-sage-600 text-[9px] font-semibold px-2 py-0.5 rounded-full mt-1.5">ISBN: 978-8119446278</span>
-                  </div>
-                </div>
-
-                <!-- Book 3 -->
-                <div class="flex gap-4 p-4 rounded-2xl border border-tactile bg-alabaster-50/20 hover:border-sage-500 transition">
-                  <div class="w-14 h-18 bg-alabaster-200 border border-taupe-400 rounded-lg flex flex-col justify-center items-center text-center p-1 text-sage-600 font-serif font-bold text-xs shadow-sm">
-                    <span>DS</span>
-                    <span class="text-[8px] text-charcoal-700 font-normal border-t border-taupe-400 mt-1 pt-0.5">GRADE 10</span>
-                  </div>
-                  <div>
-                    <h4 class="font-serif font-semibold text-charcoal-900 text-xs">Essentials of Data Science (CBSE Grade 10)</h4>
-                    <p class="text-[11px] text-charcoal-700 mt-0.5">Sultan Chand & Sons Private Limited (2023)</p>
-                    <span class="inline-block bg-sage-50 text-sage-600 text-[9px] font-semibold px-2 py-0.5 rounded-full mt-1.5">ISBN: 978-9390851652</span>
-                  </div>
-                </div>
-
-                <!-- Book 4 -->
-                <div class="flex gap-4 p-4 rounded-2xl border border-tactile bg-alabaster-50/20 hover:border-sage-500 transition">
-                  <div class="w-14 h-18 bg-alabaster-200 border border-taupe-400 rounded-lg flex flex-col justify-center items-center text-center p-1 text-sage-600 font-serif font-bold text-xs shadow-sm">
-                    <span>C++</span>
-                    <span class="text-[8px] text-charcoal-700 font-normal border-t border-taupe-400 mt-1 pt-0.5">GRADE 12</span>
-                  </div>
-                  <div>
-                    <h4 class="font-serif font-semibold text-charcoal-900 text-xs">Together with Computer Science (C++ & Python)</h4>
-                    <p class="text-[11px] text-charcoal-700 mt-0.5">Rachna Sagar Publications (2015)</p>
-                    <span class="inline-block bg-sage-50 text-sage-600 text-[9px] font-semibold px-2 py-0.5 rounded-full mt-1.5">ISBN: 978-93-86500-32-8</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Book Chapters Selected -->
-            <div class="pt-2">
-              <h3 class="text-xs uppercase tracking-wider text-charcoal-700 mb-4 font-bold"><i class="fa-solid fa-bookmark text-sage-500 mr-1.5"></i> Selected High-Impact Academic Book Chapters</h3>
-              <div class="space-y-3" id="chapters-list">
-                
-                <div class="p-3.5 rounded-2xl border border-tactile bg-alabaster-50/10 flex items-start gap-3 hover:border-sage-500 transition">
-                  <span class="bg-sage-50 text-sage-600 font-serif text-[9px] font-bold px-2 py-1 rounded whitespace-nowrap">May 2026</span>
-                  <div>
-                    <h4 class="text-xs font-bold text-charcoal-900">InnoDrive: Revolutionizing Autonomous Navigation for Smart Logistics</h4>
-                    <p class="text-[11px] text-charcoal-700 mt-0.5">Book: <em>Artificial Intelligence for Sustainable Economy and Business</em> | Publisher: Springer (ISBN: 978-3-032-20714-2)</p>
-                  </div>
-                </div>
-
-                <div class="p-3.5 rounded-2xl border border-tactile bg-alabaster-50/10 flex items-start gap-3 hover:border-sage-500 transition">
-                  <span class="bg-sage-50 text-sage-600 font-serif text-[9px] font-bold px-2 py-1 rounded whitespace-nowrap">2025</span>
-                  <div>
-                    <h4 class="text-xs font-bold text-charcoal-900">Smart Digital Hearing Devices based Audiometer: Dhvanimitra</h4>
-                    <p class="text-[11px] text-charcoal-700 mt-0.5">Book: <em>Data Analytics for Smart IoT Based Applications</em> | Publisher: Bentham Books (Under Publication)</p>
-                  </div>
-                </div>
-
-                <div class="p-3.5 rounded-2xl border border-tactile bg-alabaster-50/10 flex items-start gap-3 hover:border-sage-500 transition">
-                  <span class="bg-sage-50 text-sage-600 font-serif text-[9px] font-bold px-2 py-1 rounded whitespace-nowrap">2022</span>
-                  <div>
-                    <h4 class="text-xs font-bold text-charcoal-900">Security of IoT based e-Healthcare Applications using Blockchain</h4>
-                    <p class="text-[11px] text-charcoal-700 mt-0.5">Book: <em>Advances in Blockchain Technology for Cyber Physical Systems</em> | Publisher: Springer (ISBN: 978-3-030-93645-7)</p>
-                  </div>
-                </div>
-
-                <div class="p-3.5 rounded-2xl border border-tactile bg-alabaster-50/10 flex items-start gap-3 hover:border-sage-500 transition">
-                  <span class="bg-sage-50 text-sage-600 font-serif text-[9px] font-bold px-2 py-1 rounded whitespace-nowrap">2022</span>
-                  <div>
-                    <h4 class="text-xs font-bold text-charcoal-900">Data Security for Collaborative Business Intelligence</h4>
-                    <p class="text-[11px] text-charcoal-700 mt-0.5">Book: <em>Decision Analytics for Sustainable Development in Smart Society 5.0</em> | Publisher: Springer (ISBN: 978-981-19-1688-5)</p>
-                  </div>
-                </div>
-              </div>
+              <ul class="text-xs text-linkedin-900 space-y-3 leading-relaxed">
+                <li>
+                  <strong class="text-linkedin-900 block">AICTE-MoE IDE Bootcamp Mentor</strong>
+                  Delivered intensive bootcamps as expert resource person at SIH - AICTE (Apr 2026), NIT Nagaland (Feb 2026), NIT Manipur (Jan 2026), and IIIT Una (Dec 2025).
+                </li>
+                <li>
+                  <strong class="text-linkedin-900 block">MAIIF Incubation Center</strong>
+                  Established the Incubation Centre under Maharaja Agrasen Innovation Foundation, currently supporting 6+ registered startups.
+                </li>
+              </ul>
             </div>
           </div>
 
-          <!-- TAB 5: PATENTS HUB -->
-          <div id="pane-patents" class="tab-pane bg-white border border-taupe-400/40 p-6 rounded-3xl space-y-4 print-card">
-            <div class="flex justify-between items-center border-b border-alabaster-200 pb-3 flex-wrap gap-2">
-              <h2 class="text-xl font-serif text-charcoal-900 flex items-center gap-2">
-                <i class="fa-solid fa-lightbulb text-sage-500"></i> Intellectual Property Registries
+          <!-- PANE: JOURNALS -->
+          <div id="pane-journals" class="tab-pane bg-white border border-slate-200 p-6 rounded-3xl shadow-social space-y-4 print-card">
+            <div class="flex justify-between items-center border-b border-slate-200 pb-3 flex-wrap gap-2">
+              <h2 class="text-xl font-serif text-linkedin-900 flex items-center gap-2">
+                <i class="fa-solid fa-scroll text-linkedin-500"></i> Selected Journal Publications
               </h2>
-              <div class="flex gap-2 text-xs font-serif">
-                <span class="bg-sage-50 text-sage-600 border border-sage-100 px-2.5 py-0.5 rounded-full font-bold">2 Granted</span>
-                <span class="bg-alabaster-200 text-charcoal-700 border border-taupe-400 px-2.5 py-0.5 rounded-full font-bold">3 Published</span>
-              </div>
             </div>
 
-            <div class="space-y-4" id="patents-list">
-              <!-- Patent 1 -->
-              <div class="p-5 rounded-2xl border border-tactile bg-alabaster-50/10 hover:border-sage-500 transition">
-                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <span class="bg-sage-50 text-sage-600 text-xs font-serif border border-sage-100 px-3 py-0.5 rounded-full">Published (with MAIT support)</span>
-                  <span class="text-xs text-charcoal-700">Filed: 28/4/2025 | Pub Date: 16/5/2025</span>
+            <div class="space-y-4">
+              <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50 hover:border-linkedin-500/60 transition">
+                <span class="bg-linkedin-50 text-linkedin-500 text-[10px] uppercase font-bold border border-blue-200 px-2.5 py-0.5 rounded-full">SCIE Indexed</span>
+                <h4 class="font-serif font-semibold text-linkedin-900 mt-2 text-sm">Post-Quantum Identity-Based Linkable Ring Signcryption for Edge IoT Devices</h4>
+                <p class="text-xs text-linkedin-900 mb-2 mt-1">Dr. Sachin Gupta (Second Author) — <em>IEEE Transactions on Consumer Electronics</em></p>
+                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 font-mono">
+                  <span>CiteScore: 8.3</span>
+                  <span>Impact Factor: 4.3</span>
+                  <span>DOI: 10.1109/TCE.2026.3655021</span>
                 </div>
-                <h3 class="font-serif font-semibold text-charcoal-900 text-sm">BLOCKCHAIN VERIFIED LAND REGISTRY SYSTEM AND METHOD THEREOF</h3>
-                <p class="text-xs text-charcoal-700 mt-1"><strong>Patent Application Number:</strong> 202511040846 (India)</p>
-                <p class="text-[11px] text-charcoal-700 mt-2 italic"><i class="fa-solid fa-circle-info text-sage-500"></i> Supported officially by MAIT through Unipartde Consultants.</p>
               </div>
 
-              <!-- Patent 2 -->
-              <div class="p-5 rounded-2xl border-2 border-sage-500/10 bg-sage-50/10 hover:border-sage-500 transition">
-                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <span class="bg-sage-500 text-white text-xs font-serif px-3 py-0.5 rounded-full flex items-center gap-1"><i class="fa-solid fa-circle-check"></i> Granted (India)</span>
-                  <span class="text-xs text-charcoal-700">Design Filed: 25 July 2024 | Granted: 24 October 2024</span>
+              <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50 hover:border-linkedin-500/60 transition">
+                <span class="bg-linkedin-50 text-linkedin-500 text-[10px] uppercase font-bold border border-blue-200 px-2.5 py-0.5 rounded-full">SCIE Indexed</span>
+                <h4 class="font-serif font-semibold text-linkedin-900 mt-2 text-sm">Neural Forensic Analysis for Privacy and Integrity Protection in Biometric Authentication Systems</h4>
+                <p class="text-xs text-linkedin-900 mb-2 mt-1">Dr. Sachin Gupta (First Author) — <em>IEEE Transactions on Consumer Electronics</em></p>
+                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 font-mono">
+                  <span>CiteScore: 8.3</span>
+                  <span>Impact Factor: 4.3</span>
+                  <span>DOI: 10.1109/tce.2025.3593968</span>
                 </div>
-                <h3 class="font-serif font-semibold text-charcoal-900 text-sm">Blockchain Based Health Education Digital Display Unit</h3>
-                <p class="text-xs text-charcoal-700 mt-1"><strong>Patent / Design Registration Number:</strong> 424668-001</p>
               </div>
 
-              <!-- Patent 3 -->
-              <div class="p-5 rounded-2xl border border-tactile bg-alabaster-50/10 hover:border-sage-500 transition">
-                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <span class="bg-sage-50 text-sage-600 text-xs font-serif border border-sage-100 px-3 py-0.5 rounded-full">Published</span>
-                  <span class="text-xs text-charcoal-700">Filed: 03 January 2024 | Published: 16 February 2024</span>
+              <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50 hover:border-linkedin-500/60 transition">
+                <span class="bg-linkedin-50 text-linkedin-500 text-[10px] uppercase font-bold border border-blue-200 px-2.5 py-0.5 rounded-full">SCIE Indexed</span>
+                <h4 class="font-serif font-semibold text-linkedin-900 mt-2 text-sm">Next-Generation Optimized Video Coding Mechanism For 6G Wireless Communication Network</h4>
+                <p class="text-xs text-linkedin-900 mb-2 mt-1">Dr. Sachin Gupta (Co-Author) — <em>IEEE Communications Standards Magazine</em></p>
+                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 font-mono">
+                  <span>CiteScore: 7.1</span>
+                  <span>Impact Factor: 8.2</span>
+                  <span>DOI: 10.1109/MCOMSTD.2025.3575225</span>
                 </div>
-                <h3 class="font-serif font-semibold text-charcoal-900 text-sm">An Artificial Intelligence Based System for Emotional Recognition</h3>
-                <p class="text-xs text-charcoal-700 mt-1"><strong>Patent Application Number:</strong> 202411007451 (India)</p>
-              </div>
-
-              <!-- Patent 4 -->
-              <div class="p-5 rounded-2xl border-2 border-sage-500/10 bg-sage-50/10 hover:border-sage-500 transition">
-                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <span class="bg-sage-500 text-white text-xs font-serif px-3 py-0.5 rounded-full flex items-center gap-1"><i class="fa-solid fa-circle-check"></i> Granted (Australia)</span>
-                  <span class="text-xs text-charcoal-700">Filed: 21 May 2021 | Granted: 26 May 2021</span>
-                </div>
-                <h3 class="font-serif font-semibold text-charcoal-900 text-sm">System For Secure Authentication And Inter-Communication Among Networked IoT Devices</h3>
-                <p class="text-xs text-charcoal-700 mt-1"><strong>Patent Registration Number:</strong> 2021102117</p>
-                <p class="text-[11px] text-charcoal-700 mt-2 font-medium"><a href="http://pericles.ipaustralia.gov.au/ols/auspat/applicationDetails.do?applicationNo=2021102117" target="_blank" class="text-sage-500 hover:underline">Verify IP Australia Entry →</a></p>
-              </div>
-
-              <!-- Patent 5 -->
-              <div class="p-5 rounded-2xl border border-tactile bg-alabaster-50/10 hover:border-sage-500 transition">
-                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <span class="bg-sage-50 text-sage-600 text-xs font-serif border border-sage-100 px-3 py-0.5 rounded-full">Published</span>
-                  <span class="text-xs text-charcoal-700">Filed: 3 Nov 2019 | Published: 29 Nov 2019</span>
-                </div>
-                <h3 class="font-serif font-semibold text-charcoal-900 text-sm">Method Of Load Distribution Balancing for Fog Cloud Computing in IoT Environment</h3>
-                <p class="text-xs text-charcoal-700 mt-1"><strong>Patent Application Number:</strong> 201941044511 (India)</p>
               </div>
             </div>
           </div>
 
-          <!-- TAB 6: DOCTORAL SUPERVISION & MENTORSHIP -->
-          <div id="pane-supervision" class="tab-pane bg-white border border-taupe-400/40 p-6 rounded-3xl space-y-8 print-card">
-            
-            <!-- Section 1: Active Ongoing Ph.D Scholars -->
-            <div>
-              <div class="flex justify-between items-center border-b border-alabaster-200 pb-3 flex-wrap gap-2 mb-4">
-                <h2 class="text-lg font-serif text-charcoal-900 flex items-center gap-2">
-                  <i class="fa-solid fa-graduation-cap text-sage-500"></i> Ongoing Ph.D. Research Supervision (2 Scholars)
-                </h2>
-                <span class="bg-sage-50 text-sage-600 font-serif text-xs border border-sage-100 px-2.5 py-0.5 rounded-full">Active Core Research</span>
+          <!-- PANE: BOOKS & TEXTBOOKS -->
+          <div id="pane-books" class="tab-pane bg-white border border-slate-200 p-6 rounded-3xl shadow-social space-y-6 print-card">
+            <div class="flex justify-between items-center border-b border-slate-200 pb-3 flex-wrap gap-2">
+              <h2 class="text-xl font-serif text-linkedin-900 flex items-center gap-2">
+                <i class="fa-solid fa-book-bookmark text-linkedin-500"></i> Textbooks Library
+              </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="flex gap-4 p-4 rounded-2xl border border-slate-200 bg-slate-50 hover:border-linkedin-500 transition">
+                <div class="w-14 h-18 bg-white border border-slate-200 rounded-lg flex flex-col justify-center items-center text-center p-1 text-linkedin-500 font-serif font-bold text-xs shadow-sm">
+                  <span>AI</span>
+                  <span class="text-[8px] text-linkedin-900 font-normal border-t border-slate-200 mt-1 pt-0.5">GRADE 12</span>
+                </div>
+                <div>
+                  <h4 class="font-serif font-semibold text-linkedin-900 text-xs">Decoding Artificial Intelligence (CBSE Class 12)</h4>
+                  <p class="text-[11px] text-linkedin-900 mt-0.5">Sultan Chand &amp; Sons Private Limited (2025)</p>
+                  <span class="inline-block bg-linkedin-50 text-linkedin-500 text-[9px] font-semibold px-2 py-0.5 rounded-full mt-1.5">ISBN: 978-8119446278</span>
+                </div>
               </div>
-              <div class="overflow-x-auto bg-alabaster-100 p-4 rounded-2xl border border-tactile text-xs">
+
+              <div class="flex gap-4 p-4 rounded-2xl border border-slate-200 bg-slate-50 hover:border-linkedin-500 transition">
+                <div class="w-14 h-18 bg-white border border-slate-200 rounded-lg flex flex-col justify-center items-center text-center p-1 text-linkedin-500 font-serif font-bold text-xs shadow-sm">
+                  <span>AI</span>
+                  <span class="text-[8px] text-linkedin-900 font-normal border-t border-slate-200 mt-1 pt-0.5">GRADE 11</span>
+                </div>
+                <div>
+                  <h4 class="font-serif font-semibold text-linkedin-900 text-xs">Decoding Artificial Intelligence (CBSE Class 11)</h4>
+                  <p class="text-[11px] text-linkedin-900 mt-0.5">Sultan Chand &amp; Sons Private Limited (2025)</p>
+                  <span class="inline-block bg-linkedin-50 text-linkedin-500 text-[9px] font-semibold px-2 py-0.5 rounded-full mt-1.5">ISBN: 978-8119446278</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANE: PATENTS -->
+          <div id="pane-patents" class="tab-pane bg-white border border-slate-200 p-6 rounded-3xl shadow-social space-y-4 print-card">
+            <h2 class="text-xl font-serif text-linkedin-900 border-b border-slate-200 pb-3 mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-lightbulb text-linkedin-500"></i> Patents &amp; Intellectual Property
+            </h2>
+
+            <div class="space-y-4">
+              <div class="p-5 rounded-2xl border border-slate-200 bg-slate-50 hover:border-linkedin-500 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <span class="bg-linkedin-50 text-linkedin-500 text-xs font-serif border border-blue-200 px-3 py-0.5 rounded-full">Published (with MAIT support)</span>
+                  <span class="text-xs text-linkedin-900">Pub Date: 16/5/2025</span>
+                </div>
+                <h3 class="font-serif font-semibold text-linkedin-900 text-sm">BLOCKCHAIN VERIFIED LAND REGISTRY SYSTEM AND METHOD THEREOF</h3>
+                <p class="text-xs text-linkedin-900 mt-1"><strong>Patent Application Number:</strong> 202511040846 (India)</p>
+              </div>
+
+              <div class="p-5 rounded-2xl border border-blue-500/10 bg-blue-50/10 hover:border-linkedin-500 transition">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <span class="bg-linkedin-500 text-white text-xs font-serif px-3 py-0.5 rounded-full flex items-center gap-1"><i class="fa-solid fa-circle-check"></i> Granted (India)</span>
+                  <span class="text-xs text-linkedin-900">Granted: 24 October 2024</span>
+                </div>
+                <h3 class="font-serif font-semibold text-linkedin-900 text-sm">Blockchain Based Health Education Digital Display Unit</h3>
+                <p class="text-xs text-linkedin-900 mt-1"><strong>Patent / Design Registration Number:</strong> 424668-001</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANE: SUPERVISION -->
+          <div id="pane-supervision" class="tab-pane bg-white border border-slate-200 p-6 rounded-3xl shadow-social space-y-6 print-card">
+            <h2 class="text-xl font-serif text-linkedin-900 border-b border-slate-200 pb-3 mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-graduation-cap text-linkedin-500"></i> PhD Guidance &amp; Mentorship
+            </h2>
+
+            <div class="overflow-x-auto bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs">
+              <table class="w-full text-left">
+                <thead>
+                  <tr class="text-linkedin-900 border-b border-slate-200 font-bold">
+                    <th class="py-2">Scholar Name</th>
+                    <th class="py-2">Designation / Affiliation</th>
+                    <th class="py-2">Thesis Specialization Domain</th>
+                    <th class="py-2 text-right">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 text-linkedin-900">
+                  <tr>
+                    <td class="py-3 font-semibold text-linkedin-900 font-serif">Babita Yadav</td>
+                    <td class="py-3 font-semibold text-linkedin-900">Associate Professor, CSE, MVNU</td>
+                    <td class="py-3 leading-relaxed">Hybrid storage solutions in blockchain systems for HIPAA compliant medical records</td>
+                    <td class="py-3 text-right text-linkedin-500 font-bold">Ongoing (Active)</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 font-semibold text-linkedin-900 font-serif">Bhairavi Singh</td>
+                    <td class="py-3 font-semibold text-linkedin-900">Associate Professor, GLBITM / Amity Noida</td>
+                    <td class="py-3 leading-relaxed">Novel AI models for early identification of respiratory diseases</td>
+                    <td class="py-3 text-right text-linkedin-500 font-bold">Ongoing (Active)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Completed PhDs table -->
+            <div>
+              <h3 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Completed PhD Theses</h3>
+              <div class="overflow-x-auto bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs">
                 <table class="w-full text-left">
                   <thead>
-                    <tr class="text-charcoal-700 border-b border-taupe-400/30 font-bold">
-                      <th class="py-2">Scholar Name</th>
-                      <th class="py-2">Designation / Affiliation</th>
-                      <th class="py-2">Thesis Specialization Domain</th>
+                    <tr class="text-linkedin-900 border-b border-slate-200 font-bold">
+                      <th class="py-2">Scholar</th>
+                      <th class="py-2">Thesis Title</th>
+                      <th class="py-2 text-center">Span</th>
                       <th class="py-2 text-right">Status</th>
                     </tr>
                   </thead>
-                  <tbody class="divide-y divide-taupe-400/10 text-charcoal-700">
+                  <tbody class="divide-y divide-slate-200 text-linkedin-900">
                     <tr>
-                      <td class="py-3 font-semibold text-charcoal-900 font-serif">Babita Yadav</td>
-                      <td class="py-3">Associate Professor, CSE, MVNU</td>
-                      <td class="py-3 leading-relaxed">Hybrid storage solutions in blockchain systems for HIPAA compliant medical records</td>
-                      <td class="py-3 text-right text-sage-500 font-bold">Ongoing (Active)</td>
+                      <td class="py-3 font-semibold text-linkedin-900 font-serif">VRINDA SACHDEVA</td>
+                      <td class="py-3 leading-relaxed">Study of Attack Taxonomy &amp; security framework in NOSQL Databases</td>
+                      <td class="py-3 text-center">2015-2019</td>
+                      <td class="py-3 text-right text-linkedin-500 font-bold">Awarded (MVNU)</td>
                     </tr>
-                    
-                   
                     <tr>
-                      <td class="py-3 font-semibold text-charcoal-900 font-serif">Bhairavi Singh</td>
-                      <td class="py-3">Associate Professor, GLBITM / Amity Noida</td>
-                      <td class="py-3 leading-relaxed">Novel AI models for early identification of respiratory diseases</td>
-                      <td class="py-3 text-right text-sage-500 font-bold">Ongoing (Active)</td>
+                      <td class="py-3 font-semibold text-linkedin-900 font-serif">SNEH KALRA</td>
+                      <td class="py-3 leading-relaxed">Evaluating Data Mining performance for Big Data Analysis (Stock Market)</td>
+                      <td class="py-3 text-center">2015-2019</td>
+                      <td class="py-3 text-right text-linkedin-500 font-bold">Awarded (MVNU)</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-
-            <!-- Section 2: Completed Ph.D Guidance (8 Awarded) -->
-            <div>
-              <div class="flex justify-between items-center border-b border-alabaster-200 pb-3 flex-wrap gap-2 mb-4">
-                <h2 class="text-lg font-serif text-charcoal-900 flex items-center gap-2">
-                  <i class="fa-solid fa-award text-sage-500"></i> Completed Ph.D. Guidance (8 Awarded)
-                </h2>
-                <span class="bg-sage-50 text-sage-600 font-serif text-xs border border-sage-100 px-2.5 py-0.5 rounded-full font-bold">Alumni Base</span>
-              </div>
-              <div class="overflow-x-auto bg-alabaster-100 p-4 rounded-2xl border border-tactile text-xs">
-                <table class="w-full text-left">
-                  <thead>
-                    <tr class="text-charcoal-700 border-b border-taupe-400/30 font-bold">
-                      <th class="py-2">Scholar Name</th>
-                      <th class="py-2">Thesis Title</th>
-                      <th class="py-2 text-center">Span</th>
-                      <th class="py-2 text-right">University Status</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-taupe-400/10 text-charcoal-700">
-                    <tr>
-                      <td class="py-3 font-semibold text-charcoal-900 font-serif">VRINDA SACHDEVA</td>
-                      <td class="py-3 leading-relaxed">Study of Attack Taxonomy and Development of a novel security framework in NOSQL Databases</td>
-                      <td class="py-3 text-center whitespace-nowrap">2015-2019</td>
-                      <td class="py-3 text-right text-sage-600 font-bold">Ph.D. Awarded (MVNU)</td>
-                    </tr>
-                    <tr>
-                      <td class="py-3 font-semibold text-charcoal-900 font-serif">SNEH KALRA</td>
-                      <td class="py-3 leading-relaxed">Evaluating the performance of Data Mining algorithm for Big Data Analysis (Stock Market ML)</td>
-                      <td class="py-3 text-center whitespace-nowrap">2015-2019</td>
-                      <td class="py-3 text-right text-sage-600 font-bold">Ph.D. Awarded (MVNU)</td>
-                    </tr>
-                    <tr>
-                      <td class="py-3 font-semibold text-charcoal-900 font-serif">MANPREET SINGH</td>
-                      <td class="py-3 leading-relaxed">Novel Hidden Web Data Extraction Tool Design & its Comparative Study [Ontology]</td>
-                      <td class="py-3 text-center whitespace-nowrap">2016-2020</td>
-                      <td class="py-3 text-right text-sage-600 font-bold">Ph.D. Awarded (MVNU)</td>
-                    </tr>
-                    <tr>
-                      <td class="py-3 font-semibold text-charcoal-900 font-serif">MALA YADAV</td>
-                      <td class="py-3 leading-relaxed">Optimizing Live Migration Scheduling to Minimize Overhead in Data Centre (Genetic Algorithms)</td>
-                      <td class="py-3 text-center whitespace-nowrap">2016-2020</td>
-                      <td class="py-3 text-right text-sage-600 font-bold">Ph.D. Awarded (MVNU)</td>
-                    </tr>
-                    <tr>
-                      <td class="py-3 font-semibold text-charcoal-900 font-serif">Atul Rana</td>
-                      <td class="py-3 leading-relaxed">Crown Jewel Security in Network Infrastructure - Banks & Financial Institutions</td>
-                      <td class="py-3 text-center whitespace-nowrap">2020-2024</td>
-                      <td class="py-3 text-right text-sage-600 font-bold">Ph.D. Awarded (MVNU)</td>
-                    </tr>
-                    <tr>
-                      <td class="py-3 font-semibold text-charcoal-900 font-serif">RITU SACHDEVA</td>
-                      <td class="py-3 leading-relaxed">Novel Focused Web Crawler for Anti Spamming Approach and Fast Query Retrieval</td>
-                      <td class="py-3 text-center whitespace-nowrap">2016-2020</td>
-                      <td class="py-3 text-right text-sage-600 font-bold">Ph.D. Awarded (MVNU)</td>
-                    </tr>
-                    <tr>
-                      <td class="py-3 font-semibold text-charcoal-900 font-serif">VINAY KUMAR SAINI</td>
-                      <td class="py-3 leading-relaxed">Trust-based Blockchain records for improving Supply Chain process [Blockchain + SCM]</td>
-                      <td class="py-3 text-center whitespace-nowrap">2017-2020</td>
-                      <td class="py-3 text-right text-sage-600 font-bold">Ph.D. Awarded (MVNU)</td>
-                    </tr>
-                    <tr>
-                      <td class="py-3 font-semibold text-charcoal-900 font-serif">PRIYA GOYAL</td>
-                      <td class="py-3 leading-relaxed">An Exploratory Data Analysis Perspective of Hate Speech in Political Context [NLP]</td>
-                      <td class="py-3 text-center whitespace-nowrap">2018-2022</td>
-                      <td class="py-3 text-right text-sage-600 font-bold">Ph.D. Awarded (MVNU)</td>
-                    </tr>
-                    <tr>
-                      <td class="py-3 font-semibold text-charcoal-900 font-serif">ROHIT RASTOGI</td>
-                      <td class="py-3 leading-relaxed">A Critical Analysis : Quality of Higher Education in the State of Uttarakhand (Analytics App)</td>
-                      <td class="py-3 text-center whitespace-nowrap">2019-2023</td>
-                      <td class="py-3 text-right text-sage-600 font-bold">Ph.D. Awarded (MVNU)</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <!-- Section 3: M.Tech & Undergraduate Research Supervision -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <!-- M.Tech Guidance Console -->
-              <div class="bg-alabaster-50 p-5 rounded-2xl border border-tactile">
-                <h3 class="font-serif italic font-semibold text-charcoal-900 mb-3 flex items-center gap-2">
-                  <i class="fa-solid fa-network-wired text-sage-500"></i> M.Tech Supervision Metrics
-                </h3>
-                <p class="text-xs text-charcoal-700 mb-3">7 Students Awarded</p>
-                <div class="space-y-2 text-[11px] text-charcoal-700">
-                  <div class="flex justify-between border-b border-taupe-400/20 pb-1">
-                    <span class="font-semibold">Neha Srivastava (Graph DBs for Anomaly)</span>
-                    <span class="text-sage-600 font-bold">May 2025</span>
-                  </div>
-                  <div class="flex justify-between border-b border-taupe-400/20 pb-1">
-                    <span class="font-semibold">Aakansha Sharma (Triple Security in Cloud)</span>
-                    <span class="text-charcoal-700">June 2017</span>
-                  </div>
-                  <div class="flex justify-between border-b border-taupe-400/20 pb-1">
-                    <span class="font-semibold">Neeraj Kumari (QoS of WSN using Routing)</span>
-                    <span class="text-charcoal-700">June 2017</span>
-                  </div>
-                  <div class="flex justify-between border-b border-taupe-400/20 pb-1">
-                    <span class="font-semibold">Sapna Kaushik (WSN Mitigating Attacks)</span>
-                    <span class="text-charcoal-700">June 2017</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Undergraduate Research Internships Console -->
-              <div class="bg-alabaster-50 p-5 rounded-2xl border border-tactile">
-                <h3 class="font-serif italic font-semibold text-charcoal-900 mb-3 flex items-center gap-2">
-                  <i class="fa-solid fa-code text-sage-500"></i> Elite UG Research Mentorship
-                </h3>
-                <ul class="text-xs text-charcoal-700 space-y-3 leading-relaxed">
-                  <li>
-                    <strong class="text-charcoal-900 block font-serif">Rahul Oberoi (IIIT Delhi, 2nd Year)</strong>
-                    Pursuing a 6-month intensive research internship on Explainable AI. Communicated 1 SLR Journal article and co-authoring a conference paper.
-                  </li>
-                  <li>
-                    <strong class="text-charcoal-900 block font-serif">Vanshika Wadhwa (MAIT)</strong>
-                    Co-authored two high-quality Springer/IEEE research papers targeting AI Emotion-to-Audible Prompt systems for visually challenged groups.
-                  </li>
-                  <li>
-                    <strong class="text-charcoal-900 block font-serif">Sambhav Gupta (MAIT)</strong>
-                    Co-authored "Technical Candidate Assessment using Github Automation" published in the 2022 IEEE ICCCI proceedings.
-                  </li>
-                </ul>
-              </div>
-            </div>
-
           </div>
 
         </div>
@@ -1110,23 +754,23 @@
     </div>
   </main>
 
-  <!-- Footer Area -->
-  <footer class="bg-white border-t border-taupe-400/40 py-12 mt-16 no-print text-center text-charcoal-700">
-    <div class="max-w-7xl mx-auto px-6 space-y-4">
+  <!-- Footer section -->
+  <footer class="bg-linkedin-900 text-slate-400 border-t border-slate-800 py-12 mt-16 no-print text-center">
+    <div class="max-w-6xl mx-auto px-6 space-y-4">
       <p class="text-xs font-semibold tracking-wider uppercase">
-        © 2026 Department of Computer Science & Engineering, Maharaja Agrasen Institute of Technology
+        © 2026 Department of Computer Science &amp; Engineering, Maharaja Agrasen Institute of Technology
       </p>
-      <div class="flex justify-center gap-4 text-[11px] font-medium text-taupe-600">
-        <a href="https://mait.ac.in/" target="_blank" class="hover:text-sage-500 transition-colors">MAIT portal</a>
+      <div class="flex justify-center gap-4 text-[11px] font-medium text-slate-500 font-mono">
+        <a href="https://mait.ac.in/" target="_blank" class="hover:text-linkedin-500 transition-colors">MAIT portal</a>
         <span>•</span>
-      
-        <a href="https://github.com/SachinIWT" target="_blank" class="hover:text-sage-500 transition-colors">Developer Repository</a>
+        <a href="https://github.com/SachinIWT" target="_blank" class="hover:text-linkedin-500 transition-colors">Developer Repository</a>
       </div>
     </div>
   </footer>
 
-  <!-- Core JavaScript Framework (Interactive Routing & Filtering) -->
+  <!-- Script block executing UI routing and metrics controllers -->
   <script>
+    // Tab dynamic switching engine
     function switchTab(tabId) {
       // Hide all dynamic content panes
       const panes = document.querySelectorAll('.tab-pane');
@@ -1144,75 +788,99 @@
       const tabBtns = document.querySelectorAll('.tab-btn');
       tabBtns.forEach(btn => {
         if (btn.getAttribute('data-tab') === tabId) {
-          btn.className = "tab-btn px-4 py-2.5 rounded-xl text-xs tracking-wider uppercase font-semibold transition flex items-center gap-2 text-sage-500 bg-sage-50 border border-sage-100";
+          btn.className = "tab-btn px-4 py-2 rounded-full transition-all bg-linkedin-500 text-white shadow-sm font-semibold";
         } else {
-          btn.className = "tab-btn px-4 py-2.5 rounded-xl text-xs tracking-wider uppercase font-semibold text-charcoal-700 hover:text-charcoal-900 hover:bg-alabaster-200 transition flex items-center gap-2";
+          btn.className = "tab-btn px-4 py-2 rounded-full transition-all hover:bg-slate-200 text-linkedin-900";
         }
       });
 
-      // Sync Mobile Dropdown selector
+      // Sync Mobile Dropdown selector if it exists
       const selectBox = document.getElementById('tab-select');
       if (selectBox) {
         selectBox.value = tabId;
       }
     }
 
-    // Interactive Journal Filtration
-    function filterJournals(indexingType) {
-      const buttons = document.querySelectorAll('.journal-filter-btn');
-      buttons.forEach(btn => {
-        if (btn.innerText.toUpperCase() === indexingType.toUpperCase() || (btn.innerText === 'All' && indexingType === 'ALL')) {
-          btn.className = "journal-filter-btn px-3 py-1 text-xs rounded bg-sage-500 text-white font-semibold shadow-sm";
-        } else {
-          btn.className = "journal-filter-btn px-3 py-1 text-xs rounded bg-alabaster-100 text-charcoal-700 hover:bg-alabaster-200 transition-colors font-semibold";
-        }
-      });
-
-      const cards = document.querySelectorAll('.journal-card');
-      cards.forEach(card => {
-        const attribute = card.getAttribute('data-index');
-        if (indexingType === 'ALL') {
-          card.style.display = 'block';
-        } else if (indexingType === 'SCIE' && attribute === 'SCIE') {
-          card.style.display = 'block';
-        } else if (indexingType === 'Scopus' && attribute === 'Scopus') {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+    // Interactive skill endorser tracker
+    function endorse(skill) {
+      const el = document.getElementById('endorse-' + skill);
+      let val = parseInt(el.innerText);
+      el.innerText = val + 1;
     }
 
-    // Global Instant Query engine (cross-tab filtration)
-    function filterContent() {
-      const searchVal = document.getElementById('global-search').value.toLowerCase();
+    // Direct message simulated queue alert
+    function sendMockDM() {
+      const msg = document.getElementById('direct-message').value;
+      if (msg.trim() !== '') {
+        document.getElementById('direct-message').value = '';
+        const success = document.getElementById('dm-success');
+        success.classList.remove('hidden');
+        setTimeout(() => {
+          success.classList.add('hidden');
+        }, 4000);
+      }
+    }
+
+    // Handle timeline Comment areas
+    function toggleComments(id) {
+      const elem = document.getElementById(id);
+      elem.classList.toggle('hidden');
+    }
+
+    // Interactive Comment publisher
+    function postComment(postId) {
+      const commentInput = document.getElementById('input-comment-' + postId);
+      const text = commentInput.value;
+      if (text.trim() !== '') {
+        const commentsList = document.getElementById('comments-list-' + postId);
+        const newComment = document.createElement('p');
+        newComment.className = 'text-slate-600 font-sans';
+        newComment.innerHTML = `💬 <strong>Anonymous User:</strong> ${text}`;
+        commentsList.appendChild(newComment);
+        
+        // Update Counter
+        const counter = document.getElementById('comments-count-' + postId);
+        counter.innerText = parseInt(counter.innerText) + 1;
+        
+        commentInput.value = '';
+      }
+    }
+
+    // Local heart counter incrementer
+    function addHeart(id) {
+      const heartEl = document.getElementById('heart-' + id);
+      heartEl.innerText = parseInt(heartEl.innerText) + 1;
+    }
+
+    // Secure Copy link fallback mechanism (iframe compatible)
+    function sharePost(text) {
+      const tempInput = document.createElement('input');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
       
-      // Filter active tab cards (Journals)
-      const jCards = document.querySelectorAll('.journal-card');
-      jCards.forEach(card => {
+      // Temporary user notification without alerts
+      const btn = event.currentTarget;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `<i class="fa-solid fa-check text-emerald-500"></i> Copied!`;
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+      }, 2000);
+    }
+
+    function shareProfile() {
+      sharePost(window.location.href);
+    }
+
+    // Feed searching filtration algorithm
+    function filterFeed() {
+      const val = document.getElementById('feed-search').value.toLowerCase();
+      const cards = document.querySelectorAll('#pane-feed > div');
+      cards.forEach(card => {
         const text = card.innerText.toLowerCase();
-        card.style.display = text.includes(searchVal) ? 'block' : 'none';
-      });
-
-      // Filter active tab cards (Conferences)
-      const confs = document.querySelector('#conferences-list').children;
-      Array.from(confs).forEach(item => {
-        const text = item.innerText.toLowerCase();
-        item.style.display = text.includes(searchVal) ? 'block' : 'none';
-      });
-
-      // Filter Chapters list
-      const chaps = document.querySelector('#chapters-list').children;
-      Array.from(chaps).forEach(item => {
-        const text = item.innerText.toLowerCase();
-        item.style.display = text.includes(searchVal) ? 'block' : 'none';
-      });
-
-      // Filter Patents list
-      const patents = document.querySelector('#patents-list').children;
-      Array.from(patents).forEach(item => {
-        const text = item.innerText.toLowerCase();
-        item.style.display = text.includes(searchVal) ? 'block' : 'none';
+        card.style.display = text.includes(val) ? 'block' : 'none';
       });
     }
   </script>
