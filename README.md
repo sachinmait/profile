@@ -1,7 +1,5 @@
 # ⚡ Prof. (Dr.) Sachin Gupta | Faculty Feed 📡
 
-```⚡ TECH MEETS ACADEMIA IN A NEO-BRUTALIST LIVE STREAM REPOSITORY ⚡```
-
 Welcome to the central repository for my personal site—an interactive, corporate-LinkedIn-themed digital feed that showcases over **24 years of academic legacy**, cutting-edge R&D, and institutional leadership.
 
 ---
